@@ -1,7 +1,7 @@
-from slide_templates.classic.classic_intro_slide import ClassicIntroSlide
+from slide_templates.minimal.minimal_intro_slide import MinimalIntroSlide
 
 
-class ExampleIntroSlide(ClassicIntroSlide):
+class ExampleIntroSlide(MinimalIntroSlide):
     title = "Title 1337"
     subtitle = "Subtitle row 1 \n Subtitle row 2"
 
