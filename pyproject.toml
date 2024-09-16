@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "manta-manim-theme"
+packages = [
+    { include = "manta" }
+]
+version = "0.4.1"
+description = ""
+authors = ["Alexander Nasuta <alexander.nasuta@ima.rwth-aachen.de>"]
+readme = "README.md"
+include = [
+    "README.md",
+    "resources/**",
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.11,<3.13"
+typer = {extras = ["all"], version = "^0.12.5"}
+manim-editor = "^0.3.8"
+rich = "^13.8.0"
+
+[tool.poetry.scripts]
+install_skip_lock = "poetry install --skip-lock"
+update_skip_lock = "poetry update --skip-lock"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+sphinx = "^8.0.2"
+myst-parser = "^4.0.0"
+sphinx-autobuild = "^2024.9.3"
+furo = "^2024.8.6"
+nbsphinx = "^0.9.5"
+jupyterlab = "^4.2.5"
+twine = "^5.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[pytest]
+addopts = "-ra -q no:warnings"
+testpaths = "tests"
