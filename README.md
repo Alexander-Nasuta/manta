@@ -1,9 +1,14 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Alexander-Nasuta/manta/main/resources/logos/logo.png" alt="Alt text" style="max-width: 300px;">
+  <img src="https://raw.githubusercontent.com/Alexander-Nasuta/manta/main/resources/logos/logo.png" alt="Alt text" style="max-width: 250px;">
 </p>
+
 # Manta
 
 A Framework for building Presentation Slides and themed Videos with Manim. 
+
+- Github: [Manta](https://github.com/Alexander-Nasuta/manta)
+- Pypi: [Manta](https://pypi.org/project/manta-manim-theme/)
+- Documentation: [Manta Docs]()
 
 ## Description
 
@@ -26,7 +31,7 @@ It features the following components:
 - [Quickstart](#quickstart)
 - [Documentation]()
 - [Contributing](#contributing)
-- [State of the Project](#State of the Project)
+- [State of the Project](#state-of-the-project)
 - [Roadmap](#roadmap)
 - [Contact](#contact)
 
