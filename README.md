@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Alexander-Nasuta/manta/main/resources/logos/logo.png" alt="Alt text" style="max-width: 300px;">
+</p>
 # Manta
 
 A Framework for building Presentation Slides and themed Videos with Manim. 
