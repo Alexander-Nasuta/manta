@@ -237,7 +237,8 @@ class NeuralNetworkUtils(ShapeUtils):
                 arrow = m.Line(shared_neuron.get_center(), bottom_neuron.get_center(), **merged_connection_arrow_kwargs)
                 connection_arrows.add(arrow)
 
-        return m.VGroup(input_layer, output_layer, connection_arrows, shared_nn, top_nn, bottom_nn).move_to(
+        # input_layer, output_layer, connection_arrows, shared_nn, top_nn, bottom_nn
+        return m.VGroup(shared_nn, top_nn, bottom_nn, connection_arrows).move_to(
             m.ORIGIN
         )
 
@@ -246,7 +247,10 @@ class NeuralNetworkUtils(ShapeUtils):
         if color is None:
             color = self.magenta
 
-        input_layer, output_layer, connection_arrows, shared_nn, top_nn, bottom_nn = two_headed_nn
+        # input_layer, output_layer, connection_arrows, shared_nn, top_nn, bottom_nn = two_headed_nn
+        shared_nn, top_nn, bottom_nn, connection_arrows = two_headed_nn
+        input_layer = shared_nn[1][0]
+        output_layer_top = m.VGroup(top_nn[1][-1], bottom_nn[1][-1])
 
         n_layer_shared = len(shared_nn[1])
         n_layer_top = len(top_nn[1])
