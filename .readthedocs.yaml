@@ -20,13 +20,8 @@ build:
     - ffmpeg
     - unzip
   commands:
-    - |
-      # Install Nerd Font
-      mkdir -p ~/.local/share/fonts
-      cd ~/.local/share/fonts
-      wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
-      unzip FiraCode.zip
-      fc-cache -fv
+    - mkdir -p ~/.local/share/fonts
+    - cp resources/*.ttf ~/.local/share/fonts/
 
 
 # Build documentation in the "docs/" directory with Sphinx
