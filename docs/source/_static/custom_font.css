@@ -1,0 +1,13 @@
+/* docs/source/_static/custom_font.css */
+body {
+    font-family: "IosevkaTerm Nerd Font", "IosevkaTermSlab Nerd Font", Arial, sans-serif;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "IosevkaTerm Nerd Font", "IosevkaTermSlab Nerd Font", Arial, sans-serif;
+}
+
+span, pre {
+    font-family: "IosevkaTerm Nerd Font Mono", "IosevkaTermSlab Nerd Font Mono", Arial, sans-serif;
+}
