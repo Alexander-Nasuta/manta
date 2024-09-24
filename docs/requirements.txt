@@ -1,4 +1,4 @@
-manta-manim-theme >= 0.5
+manta-manim-theme >= 0.6
 manim-editor
 pytest >= 8.3.3
 sphinx >= 8.0.2

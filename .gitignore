@@ -1,3 +1,6 @@
+
+.token
+
 # ignore all directories called "media"
 media/
 media/*
