@@ -28,6 +28,17 @@ class BaseSlide(PaddingABC, m.Scene):
             return False
         return mobj in self.mobjects
 
+    def fade_out_scene(self):
+        # don't use self.play(*[m.FadeOut(obj) for obj in self.mobjects])
+        # because play method is overridden in subclasses
+        # it causes troubles with slide index-objects (see IndexedSlide)
+        m.Scene.play(self, *[m.FadeOut(obj) for obj in self.mobjects])
+
+    def get_max_z_index(self) -> int:
+        if not self.mobjects:
+            return 0
+        return max(mobj.z_index for mobj in self.mobjects)
+
     @classmethod
     def get_file_path(cls) -> Path:
         return Path(inspect.getfile(cls)).resolve()
@@ -63,6 +74,16 @@ class BaseSlide(PaddingABC, m.Scene):
         os.system(f"{terminal_cmd}")
 
     @classmethod
+    def render_video_4k(cls):
+        flags = "-pqk"
+        scene = cls.__name__
+        file_path = cls.get_file_path()
+
+        terminal_cmd = f"manim {file_path} {scene} {flags}"
+        log.info(f"running command: \n\n\t{terminal_cmd}\n")
+        os.system(f"{terminal_cmd}")
+
+    @classmethod
     def save_sections(cls):
         file_path = cls.get_file_path()
         terminal_cmd = f"manim --save_sections -qk {file_path}"
@@ -74,6 +95,13 @@ class BaseSlide(PaddingABC, m.Scene):
     def save_sections_without_cache(cls):
         file_path = cls.get_file_path()
         terminal_cmd = f"manim --disable_caching --save_sections -qk {file_path}"
+        log.info(f"running command: \n\n\t{terminal_cmd}\n")
+        os.system(f"{terminal_cmd}")
+
+    @classmethod
+    def show_last_frame(cls):
+        file_path = cls.get_file_path()
+        terminal_cmd = f"manim -pqm -s {file_path}"
         log.info(f"running command: \n\n\t{terminal_cmd}\n")
         os.system(f"{terminal_cmd}")
 

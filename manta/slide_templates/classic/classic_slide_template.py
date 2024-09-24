@@ -73,6 +73,13 @@ class ClassicSlideTemplate(MinimalSlideTemplate):
         else:
             raise ValueError("Seperator line bottom is not in the scene")
 
+    def add_seperator_lines(self, transformation: m.Transform | None = None,
+                            **kwargs) -> m.AnimationGroup | m.Transform:
+        return m.AnimationGroup(
+            self.add_seperator_line_top(transformation=transformation, **kwargs),
+            self.add_seperator_line_bottom(transformation=transformation, **kwargs)
+        )
+
 
 class TestClassicSlide(ClassicSlideTemplate):
     logo_paths = [

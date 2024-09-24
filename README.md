@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Alexander-Nasuta/manta/main/resources/logos/logo.png" alt="Alt text" style="max-width: 250px;">
+  <img src="https://raw.githubusercontent.com/Alexander-Nasuta/manta/main/resources/logos/logo.png" alt="Alt text" style="max-height: 200px;">
 </p>
 
 # Manta
@@ -8,7 +8,7 @@ A Framework for building Presentation Slides and themed Videos with Manim.
 
 - Github: [Manta](https://github.com/Alexander-Nasuta/manta)
 - Pypi: [Manta](https://pypi.org/project/manta-manim-theme/)
-- Documentation: [Manta Docs]()
+- Documentation: [Manta Docs](https://alexander-nasuta.github.io/manta/)
 
 ## Description
 
@@ -29,11 +29,12 @@ It features the following components:
 ## Table of Contents
 
 - [Quickstart](#quickstart)
-- [Documentation]()
+- [Documentation](#documentation)
 - [Contributing](#contributing)
 - [State of the Project](#state-of-the-project)
 - [Roadmap](#roadmap)
 - [Contact](#contact)
+
 
 ## Quickstart
 
@@ -52,20 +53,20 @@ Then update manim to the latest version:
 pip install -U manim
 ```
 you might see the following error:
-```shell
+
+```
 ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
 manim-editor 0.3.8 requires manim<0.14.0,>=0.13.1, but you have manim 0.18.1 which is incompatible.
 ```
+
 Manta uses [Manim-Editor](https://docs.editor.manim.community/en/stable/) for creating slides.
 Unfortunately the Manim-Editor dependency is a bit dated and states that it is only compatible with Manim version up to
 0.13.1. However, Manta is actually required to use a more recent version of Manim (the initial manta package was developed with the manim version 0.18.1).
 
-```{include} manta/examples/quickstart.py
-```
 
 ## Documentation
 
-The documentation for Manta can be found [here]()
+The documentation for Manta can be found [here](https://alexander-nasuta.github.io/manta/).
 
 Here are also other resources that might be helpful:
 - [Manim Documentation](https://docs.manim.community/en/stable/)
@@ -90,3 +91,6 @@ I assume that I will continue to develop Manta and add new features to it till a
 ## Contact
 
 If you have any questions or feedback, feel free to contact me via [email](mailto:alexander.nasuta@wzl-iqs.rwth-aachen.de)
+
+## Dev
+`sphinx-autobuild docs/source/ docs/build/html/`

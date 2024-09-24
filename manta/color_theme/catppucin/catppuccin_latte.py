@@ -14,7 +14,7 @@ class CatppuccinLatteTheme(CatppuccinThemeABC):
     font_color_secondary: str = "#5c5f77"
 
     black: str = "#6c6f85"
-    black_bright: str = "#6c6f85"
+    black_bright: str = "#bcc0cc"
 
     red: str = "#d20f39"
     red_bright: str = "#d20f39"

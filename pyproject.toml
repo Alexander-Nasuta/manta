@@ -12,17 +12,17 @@ include = [
     "resources/**",
 ]
 
-
 [tool.poetry.dependencies]
 python = "^3.11,<3.13"
 typer = {extras = ["all"], version = "^0.12.5"}
-manim-editor = "^0.3.8"
+manim = "^0.18.1"
 rich = "^13.8.0"
+matplotlib = "^3.8,<3.9"
 
 [tool.poetry.scripts]
-install_skip_lock = "poetry install --skip-lock"
-update_skip_lock = "poetry update --skip-lock"
-
+# install_skip_lock = "poetry install --skip-lock"
+# update_skip_lock = "poetry update --skip-lock"
+manta = "manta.cli.typer_cli:app"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"
@@ -33,6 +33,8 @@ furo = "^2024.8.6"
 nbsphinx = "^0.9.5"
 jupyterlab = "^4.2.5"
 twine = "^5.1.1"
+sphinx-copybutton = "^0.5.2"
+gymnasium = "^0.28.1"
 
 [build-system]
 requires = ["poetry-core"]

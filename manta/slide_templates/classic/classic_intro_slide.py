@@ -1,11 +1,11 @@
 import manim as m
 import numpy as np
 
-from manta.font_style.IosevkaTerm_base_24 import LatexFontSizing24
+from manta.font_style.IosevkaTerm_base_24 import IosevkaTermSizing24
 from manta.slide_templates.logo_slide import LogoSlide
 
 
-class ClassicIntroSlide(LatexFontSizing24, LogoSlide):
+class ClassicIntroSlide(IosevkaTermSizing24, LogoSlide):
     background_picture = None
     background_scale: float = 1.0
     background_shift: np.ndarray = np.array([0, 0, 0])
@@ -20,11 +20,13 @@ class ClassicIntroSlide(LatexFontSizing24, LogoSlide):
     title_v_buff: float = None
     title_h_buff: float = None
     title_shift: np.ndarray = np.array([0, 0, 0])
+    title_color = None
 
     subtitle = ""
     subtitle_v_buff: float = None
     subtitle_h_buff: float = None
     subtitle_shift: np.ndarray = np.array([0, 0, 0])
+    subtitle_color = None
 
     def fade_in_slide(self, lag_ratio=0.15, lag_ratio_background_img = 0.6) -> m.AnimationGroup:
         if self.background_picture is None:
@@ -49,16 +51,18 @@ class ClassicIntroSlide(LatexFontSizing24, LogoSlide):
 
         title_v_buff = self.med_small_buff if self.title_v_buff is None else self.title_v_buff
         title_h_buff = self.med_large_buff if self.title_h_buff is None else self.title_h_buff
+        title_font_color = self.font_color if self.title_color is None else self.title_color
 
-        title_mobject = self.term_text(self.title, font_size=self.font_size_LARGE)
+        title_mobject = self.term_text(self.title, font_size=self.font_size_LARGE, font_color=title_font_color)
         title_mobject.next_to(overlay_rect.get_top(), m.DOWN, buff=title_v_buff)
         title_mobject.to_edge(m.LEFT, buff=title_h_buff)
         title_mobject.shift(self.title_shift)
 
         subtitle_v_buff = self.med_small_buff if self.subtitle_v_buff is None else self.subtitle_v_buff
         subtitle_h_buff = self.med_large_buff if self.subtitle_h_buff is None else self.subtitle_h_buff
+        subtitle_font_color = self.font_color if self.subtitle_color is None else self.subtitle_color
 
-        subtitle_mobject = self.term_text(self.subtitle, font_size=self.font_size_large)
+        subtitle_mobject = self.term_text(self.subtitle, font_size=self.font_size_large, font_color=subtitle_font_color)
         subtitle_mobject.next_to(title_mobject, m.DOWN, buff=subtitle_v_buff)
         subtitle_mobject.to_edge(m.LEFT, buff=subtitle_h_buff)
         subtitle_mobject.shift(self.subtitle_shift)

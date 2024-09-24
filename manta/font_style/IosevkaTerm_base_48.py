@@ -1,7 +1,7 @@
 from manta.font_style.fontABC import FontABC
 
 
-class LatexFontSizing48(FontABC):
+class IosevkaTerm48(FontABC):
 
     font_name: str = "IosevkaTerm Nerd Font Mono"
 

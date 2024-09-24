@@ -4,34 +4,31 @@ from manta.color_theme.tokyo_night.tokyo_night_ABC import TokyoNightABC
 class TokyoNight(TokyoNightABC):
     # ColorThemeABC
     background_color: str = "#1a1b26"
-    background_color_bright: str = "#24283b"
+    background_color_bright: str = "#414868"
 
-    surface_color: str = "#24283b"
-    outline_color: str = "#565f89"
+    font_color: str = "#c0caf5"
+    font_color_secondary: str = "#a9b1d6"
 
-    font_color: str = "#a9b1d6"
-    font_color_secondary: str = "#b4f9f8"
-
-    black: str = "#414868"
-    black_bright: str = "#565f89"
+    black: str = "#15161e"
+    black_bright: str = "#414868"
 
     red: str = "#f7768e"
-    red_bright: str = "#ff7a93"
+    red_bright: str = "#f7768e"
 
     green: str = "#9ece6a"
-    green_bright: str = "#b9f27c"
+    green_bright: str = "#9ece6a"
 
     yellow: str = "#e0af68"
-    yellow_bright: str = "#ff9e64"
+    yellow_bright: str = "#e0af68"
 
     blue: str = "#7aa2f7"
-    blue_bright: str = "#7dcfff"
+    blue_bright: str = "#7aa2f7"
 
     magenta: str = "#bb9af7"
-    magenta_bright: str = "#c0caf5"
+    magenta_bright: str = "#bb9af7"
 
     cyan: str = "#7dcfff"
-    cyan_bright: str = "#a9b1d6"
+    cyan_bright: str = "#7dcfff"
 
     white: str = "#a9b1d6"
     white_bright: str = "#c0caf5"

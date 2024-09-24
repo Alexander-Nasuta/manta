@@ -1,21 +1,27 @@
 import manim as m
 
 from manta.elements.rectangle_utils import RectangleUtils
-from manta.font_style.IosevkaTerm_base_24 import LatexFontSizing24
+from manta.font_style.IosevkaTerm_base_24 import IosevkaTermSizing24
 from manta.slide_templates.base.base_colored_slide import BaseColorSlide
 
 
-class TitleSlide(LatexFontSizing24, RectangleUtils, BaseColorSlide):
-    _title_mobject: m.Mobject | None = None
-    _title_seperator_mobject: m.Mobject | None = None
-    _subtitle_mobject: m.Mobject | None = None
+class TitleSlide(IosevkaTermSizing24, RectangleUtils, BaseColorSlide):
+    _title_mobject: m.Mobject | m.VGroup | None = None
+    _title_seperator_mobject: m.Mobject | m.VGroup | None = None
+    _subtitle_mobject: m.Mobject | m.VGroup | None = None
     title_row_font_size: float = None
     title_color: str = None
     subtitle_color: str = None
     title_seperator_color: str = None
-    title_row_inbetween_buff: float = None
+
     title_row_vertical_buff: float = None
     title_row_horizontal_buff: float = None
+
+    default_title_seperator = ": "
+
+    _last_title_value: str | None = None
+    _last_seperator_value: str | None = None
+    _last_subtitle_value: str | None = None
 
     def set_title_row(self, title: str | None = None, subtitle: str | None = None, seperator: str | None = None,
                       create_animation: m.Transform = None,
@@ -29,6 +35,19 @@ class TitleSlide(LatexFontSizing24, RectangleUtils, BaseColorSlide):
             destroy_animation = m.FadeOut
         if replace_animation is None:
             replace_animation = m.Transform
+
+        # title, seperator, subtitle are have to single line strings
+        if title is not None and len(title.split("\n")) > 1:
+            raise ValueError("Title has to be a single line string")
+        if seperator is not None and len(seperator.split("\n")) > 1:
+            raise ValueError("Seperator has to be a single line string")
+        if subtitle is not None and len(subtitle.split("\n")) > 1:
+            raise ValueError("Subtitle has to be a single line string")
+
+        # set last values
+        self._last_title_value = title
+        self._last_seperator_value = seperator
+        self._last_subtitle_value = subtitle
 
         previous_title_is_present = self._title_seperator_mobject is not None or self.is_in_scene(self._title_mobject)
         previous_subtitle_is_present = self._subtitle_mobject is not None or self.is_in_scene(self._subtitle_mobject)
@@ -63,15 +82,46 @@ class TitleSlide(LatexFontSizing24, RectangleUtils, BaseColorSlide):
             target_group.add(target_subtitle_mobj)
 
         # alight the title row
-        inbetween_buff = self.title_row_inbetween_buff if self.title_row_inbetween_buff is not None else self.small_buff
-        target_group.arrange(direction=m.RIGHT, buff=inbetween_buff)
+        # hidden row = title+seperator+subtitle+hidden_char(█)
+        # idea for aligning the title row:
+        #   1. create a row with the whole title row (title+seperator+subtitle) and a hidden character at the end
+        #   2. align the hidden row
+        #   3. posisition the letters of the title, seperator, and subtitle at the same position as the hidden row
+        #   4. don't add the hidden row to the scene, only the title, seperator, and subtitle
+
+        # inbetween_buff = self.title_row_inbetween_buff if self.title_row_inbetween_buff is not None else self.small_buff
+        # target_group.arrange(direction=m.RIGHT, buff=inbetween_buff)
 
         # position the title row in the top left corner
-        vertical_buff = self.title_row_vertical_buff if self.title_row_vertical_buff is not None else self.med_large_buff
+        # vertical_buff = self.title_row_vertical_buff if self.title_row_vertical_buff is not None else self.med_large_buff
+        # horizontal_buff = self.title_row_horizontal_buff if self.title_row_horizontal_buff is not None else self.med_large_buff
+
+        # target_group.to_edge(m.UP, buff=vertical_buff)
+        # target_group.to_edge(m.LEFT, buff=horizontal_buff)
+
+        target_strs = []
+        for elem in [title, seperator, subtitle]:
+            if elem is not None:
+                target_strs.append(elem)
+        target_strs.append(self._hidden_char)
+
+        hidden_row = "".join(target_strs)
+        hidden_row_mobj_vgroup = self.term_text(hidden_row, font_size=title_row_font_size)
+
+        vertical_buff = self.title_row_vertical_buff if self.title_row_vertical_buff is not None else self.med_large_buff * 0.75
         horizontal_buff = self.title_row_horizontal_buff if self.title_row_horizontal_buff is not None else self.med_large_buff
 
-        target_group.to_edge(m.UP, buff=vertical_buff)
-        target_group.to_edge(m.LEFT, buff=horizontal_buff)
+        hidden_row_mobj_vgroup.to_edge(m.UP, buff=vertical_buff)
+        hidden_row_mobj_vgroup.to_edge(m.LEFT, buff=horizontal_buff)
+
+        target_letter_mobjects = []
+        for target_elem in target_group:
+            target_elem_text_mobject: m.Text = target_elem[0]
+            target_letter_mobjects.extend(target_elem_text_mobject.submobjects)
+
+        for target_letter_mobj, hidden_letter_mobj in zip(target_letter_mobjects,
+                                                          hidden_row_mobj_vgroup[0].submobjects):
+            target_letter_mobj.move_to(hidden_letter_mobj.get_center())
 
         # build animation group
         animations_list = []
@@ -107,6 +157,64 @@ class TitleSlide(LatexFontSizing24, RectangleUtils, BaseColorSlide):
             self._subtitle_mobject = None
 
         return m.AnimationGroup(*animations_list, **kwargs)
+
+    def change_subtitle(self, new_subtitle: str | None = None, **kwargs) -> m.AnimationGroup:
+        default_params = {
+            "title": self._last_title_value,
+            "seperator": self.default_title_seperator,
+            "subtitle": new_subtitle
+        }
+        # if title is not None, new_subtitle is not None, and seperator is None -> use default seperator
+        if (default_params["title"] is not None
+                and default_params["subtitle"] is not None
+                and default_params["seperator"] is None):
+            default_params["seperator"] = self.default_title_seperator
+
+        merged_params = {**default_params, **kwargs}
+
+        return self.set_title_row(**merged_params)
+
+    def remove_subtitle(self, **kwargs) -> m.AnimationGroup:
+        return self.change_subtitle(new_subtitle=None, seperator=None, **kwargs)
+
+    def change_title(self, new_title: str | None = None, **kwargs) -> m.AnimationGroup:
+        default_params = {
+            "title": new_title,
+            "seperator": self.default_title_seperator,
+            "subtitle": self._last_subtitle_value
+        }
+        # if title is not None, new_subtitle is not None, and seperator is None -> use default seperator
+        if (default_params["title"] is not None
+                and default_params["subtitle"] is not None
+                and default_params["seperator"] is None):
+            default_params["seperator"] = self.default_title_seperator
+
+        merged_params = {**default_params, **kwargs}
+
+        return self.set_title_row(**merged_params)
+
+    def remove_title(self, **kwargs) -> m.AnimationGroup:
+        return self.change_title(new_title=None, seperator=None, **kwargs)
+
+    def change_title_seperator(self, new_seperator: str | None = None, update_default_seperator=True,
+                               **kwargs) -> m.AnimationGroup:
+        if update_default_seperator:
+            self.default_title_seperator = new_seperator
+        default_params = {
+            "title": self._last_title_value,
+            "seperator": new_seperator,
+            "subtitle": self._last_subtitle_value
+        }
+
+        merged_params = {**default_params, **kwargs}
+
+        return self.set_title_row(**merged_params)
+
+    def remove_title_seperator(self, **kwargs) -> m.AnimationGroup:
+        return self.change_title_seperator(new_seperator=None, **kwargs)
+
+    def remove_title_row(self, **kwargs) -> m.AnimationGroup:
+        return self.set_title_row(title=None, seperator=None, subtitle=None, **kwargs)
 
 
 class TestTitleSlide(TitleSlide):

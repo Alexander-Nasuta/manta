@@ -1,9 +1,11 @@
 from color_theme.tokyo_night.tokyo_night import TokyoNight
 from slide_templates.rwth.rwth_slide_template import RwthSlideTemplate
 
+import manta.docbuild.image_path_utils as path_utils
+
 
 class RwthWZLSlideTemplate(RwthSlideTemplate):
-    logo_paths = ["wzl.svg"]
+    logo_paths = [path_utils.get_wzl_logo_abs_path()]
 
 
 class TestRwthSlideTemplate(RwthWZLSlideTemplate):

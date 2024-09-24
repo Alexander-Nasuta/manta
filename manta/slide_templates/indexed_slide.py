@@ -1,11 +1,11 @@
 import manim as m
 
 from manta.elements.rectangle_utils import RectangleUtils
-from manta.font_style.IosevkaTerm_base_24 import LatexFontSizing24
+from manta.font_style.IosevkaTerm_base_24 import IosevkaTermSizing24
 from manta.slide_templates.base.base_colored_slide import BaseColorSlide
 
 
-class IndexedSlide(LatexFontSizing24, RectangleUtils, BaseColorSlide):
+class IndexedSlide(IosevkaTermSizing24, RectangleUtils, BaseColorSlide):
     _index_mobject: m.Mobject | None = None
     index_prefix: str = ""
     index_position: str = "left"  # 'left' , 'right' are the only valid values for TermSlide

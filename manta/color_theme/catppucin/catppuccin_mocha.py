@@ -14,7 +14,7 @@ class CatppuccinMochaTheme(CatppuccinThemeABC):
     font_color_secondary: str = "#bac2de"
 
     black: str = "#45475a"
-    black_bright: str
+    black_bright: str = "#45475a"
 
     red: str = "#f38ba8"
     red_bright: str = "#f38ba8"

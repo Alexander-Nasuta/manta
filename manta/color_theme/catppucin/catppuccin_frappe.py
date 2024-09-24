@@ -11,7 +11,7 @@ class CatppuccinFrappeTheme(CatppuccinThemeABC):
     outline_color: str = "#737994"
 
     font_color: str = "#c6d0f5"
-    font_color_secondary: str = "b5bfe2"
+    font_color_secondary: str = "#b5bfe2"
 
     black: str = "#51576d"
     black_bright: str = "#51576d"

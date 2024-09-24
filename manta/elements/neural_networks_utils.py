@@ -1,4 +1,7 @@
+import itertools
+
 import manim as m
+from manta.logger import log
 
 from manta.elements.shapes import ShapeUtils
 
@@ -90,40 +93,42 @@ class NeuralNetworkUtils(ShapeUtils):
             m.VGroup(*layers),
         ).move_to(m.ORIGIN)
 
-    def simple_neural_network_forward_animation(self, nn: m.VGroup, color: m.ManimColor = None,
-                                                run_time=1.5) -> m.AnimationGroup:
+    def simple_neural_network_forward_animation(self, nn: m.VGroup, color: m.ManimColor | str = None,
+                                                run_time=1.0) -> m.AnimationGroup:
         if color is None:
             color = self.magenta
 
         animations = []
-        total_runtime = run_time
-        layer_runtime = total_runtime / len(nn[1])
 
         for layer_idx, (layer_connection, layer), in enumerate(zip(nn[0], nn[1])):
             layer_animation = m.AnimationGroup(
-                m.ShowPassingFlash(layer_connection.copy().set_color(color), time_width=0.5),
                 m.Indicate(layer, color=color, scale_factor=1.0),
-                run_time=layer_runtime
+                m.ShowPassingFlash(layer_connection.copy().set_color(color), time_width=0.5),
+                # I tried to introduce lag for each layer, the flow through the network looks much smoother to me
+                # when I there is no stop between layers at all, so I set lag_ratio to 0.0
+                # eventually this could be a parameter of the function, but for now I will leave it hardcoded
+                lag_ratio=0.0,
             )
             animations.append(layer_animation)
 
         animations.append(
-            m.Indicate(nn[1][-1], color=color, scale_factor=1.0, run_time=layer_runtime)
+            m.Indicate(nn[1][-1], color=color, scale_factor=1.0, )
         )
 
         nn_animation = m.AnimationGroup(
             *animations,
-            lag_ratio=layer_runtime
+            lag_ratio=0.5,
+            run_time=run_time
         )
 
         return nn_animation
 
     def two_headed_network(self, shared_network_kwargs: dict = None,
-                           shared_network_color: m.ManimColor = None,
+                           shared_network_color: m.ManimColor | str = None,
                            top_head_network_kwargs: dict = None,
-                           top_head_network_color: m.ManimColor = None,
+                           top_head_network_color: m.ManimColor | str = None,
                            bottom_networks_kwargs: dict = None,
-                           bottom_networks_color: m.ManimColor = None,
+                           bottom_networks_color: m.ManimColor | str = None,
                            connection_arrow_kwargs: dict = None,
                            layer_vertical_spacing=0.35,
                            layer_horizontal_spacing=1.0, ):
@@ -242,50 +247,37 @@ class NeuralNetworkUtils(ShapeUtils):
             m.ORIGIN
         )
 
-    def two_headed_neural_network_forward_animation(self, two_headed_nn: m.VGroup, color: m.ManimColor = None,
-                                                    run_time_per_layer: float = 0.5) -> m.AnimationGroup:
+    def two_headed_neural_network_forward_animation(self, two_headed_nn: m.VGroup, color: m.ManimColor | str = None,
+                                                    run_time=1.5) -> m.AnimationGroup:
         if color is None:
             color = self.magenta
 
-        # input_layer, output_layer, connection_arrows, shared_nn, top_nn, bottom_nn = two_headed_nn
-        shared_nn, top_nn, bottom_nn, connection_arrows = two_headed_nn
-        input_layer = shared_nn[1][0]
-        output_layer_top = m.VGroup(top_nn[1][-1], bottom_nn[1][-1])
+        try:
+            shared_nn, top_nn, bottom_nn, connection_arrows = two_headed_nn
+        except ValueError as e:
+            log.warn("two_headed_nn should have 4 elements: shared_nn, top_nn, bottom_nn, connection_arrows. "
+                      "please check if you indeed passed a two_headed_nn to this function.")
+            raise e
 
-        n_layer_shared = len(shared_nn[1])
-        n_layer_top = len(top_nn[1])
-        n_layer_bottom = len(bottom_nn[1])
+        shared_animation_group = self.simple_neural_network_forward_animation(shared_nn)
+        top_animation_group = self.simple_neural_network_forward_animation(top_nn)
+        bottom_animation_group = self.simple_neural_network_forward_animation(bottom_nn)
 
-        animations = []
+        animations = list(shared_animation_group.animations)
 
-        shared_layer_run_time = run_time_per_layer * n_layer_shared
-        top_layer_run_time = run_time_per_layer * n_layer_top
-        bottom_layer_run_time = run_time_per_layer * n_layer_bottom
-
-        # shared network
-        shared_animation = self.simple_neural_network_forward_animation(
-            shared_nn, color=color, run_time=shared_layer_run_time
+        animations.append(
+            m.ShowPassingFlash(connection_arrows.copy().set_color(self.magenta), time_width=0.5),
         )
-        animations.append(shared_animation)
 
-        # animation between shared and top, bottom head networks
-        # animate only lines, since the heads are already animated
-        shared_to_heads_animation = m.ShowPassingFlash(
-            connection_arrows.copy().set_color(color),
-            time_width=1,
-            run_time=run_time_per_layer
-        )
-        animations.append(shared_to_heads_animation)
+        for head_animations in itertools.zip_longest(top_animation_group.animations, bottom_animation_group.animations):
+            animations.append(
+                m.AnimationGroup(
+                    # filter out None values
+                    *[anim for anim in head_animations if anim is not None])
+            )
 
-        head_animations = m.AnimationGroup(
-            self.simple_neural_network_forward_animation(top_nn, color=color, run_time=top_layer_run_time),
-            self.simple_neural_network_forward_animation(bottom_nn, color=color, run_time=bottom_layer_run_time),
-        )
-        animations.append(head_animations)
-
-        resulting_animation = m.AnimationGroup(
+        return m.AnimationGroup(
             *animations,
-            lag_ratio=run_time_per_layer
+            lag_ratio=0.5,
+            run_time=run_time
         )
-
-        return resulting_animation
