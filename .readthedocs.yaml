@@ -19,9 +19,6 @@ build:
     - graphviz
     - ffmpeg
     - unzip
-  commands:
-    - mkdir -p ~/.local/share/fonts
-    - cp resources/*.ttf ~/.local/share/fonts/
 
 
 # Build documentation in the "docs/" directory with Sphinx

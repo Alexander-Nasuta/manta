@@ -1,8 +1,17 @@
 import manim as m
+import pathlib as pl
 
 from manta.color_theme.color_theme_ABC import ColorThemeABC
 from manta.elements.nerdfont_icons import NerdfontIconUtils
 from manta.font_style.fontABC import FontABC
+
+path_of_this_file = pl.Path(__file__).resolve()
+docbuild_dir = path_of_this_file.parent
+manta_dir = docbuild_dir.parent
+manta_project_root_fir = manta_dir.parent
+manta_resources_dir = manta_project_root_fir / "resources"
+
+iosevka_nerdfont_path = manta_resources_dir / "IosevkaTermSlabNerdFontMono-Regular.ttf"
 
 
 class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
@@ -19,40 +28,42 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
         return m.Paragraph(t, **params)
 
     def term_text(self, t: str | None, v_buff=0.05, **kwargs) -> m.VGroup:
-        if t is None:
-            return m.VGroup()
-        color = kwargs.pop("font_color", None)
-        default_params = {
-            "font": self.font_name,
-            "color": self.font_color if color is None else color,
-            "font_size": self.font_size_normal,
-        }
-        params = {**default_params, **kwargs}
+        with m.register_font(iosevka_nerdfont_path):
+            if t is None:
+                return m.VGroup()
+            color = kwargs.pop("font_color", None)
+            default_params = {
+                "font": self.font_name,
+                "color": self.font_color if color is None else color,
+                "font_size": self.font_size_normal,
+            }
+            params = {**default_params, **kwargs}
 
-        lines = t.split("\n")
-        if len(lines) == 1:
-            return m.VGroup(m.Text(t, **params))
-        else:
-            hidden_text = m.Text(self._hidden_char, **params)
-            hidden_rows = [hidden_text]
+            lines = t.split("\n")
+            if len(lines) == 1:
+                return m.VGroup(m.Text(t, **params))
+            else:
+                hidden_text = m.Text(self._hidden_char, **params)
+                hidden_rows = [hidden_text]
 
-            first_row = m.Text(lines[0], **params)
-            rows = [first_row]
+                first_row = m.Text(lines[0], **params)
+                rows = [first_row]
 
-            first_row.align_to(hidden_text, m.LEFT)
+                first_row.align_to(hidden_text, m.LEFT)
 
-            # rest of the rows
-            for i in range(1, len(lines)):
-                row = m.Text(lines[i], **params)
-                row.next_to(hidden_rows[i - 1], m.DOWN, buff=v_buff, aligned_edge=m.LEFT)
-                rows.append(row)
+                # rest of the rows
+                for i in range(1, len(lines)):
+                    row = m.Text(lines[i], **params)
+                    row.next_to(hidden_rows[i - 1], m.DOWN, buff=v_buff, aligned_edge=m.LEFT)
+                    rows.append(row)
 
-                hidden_row = m.Text(self._hidden_char, **params)
-                hidden_row.next_to(hidden_rows[i - 1], m.DOWN, buff=v_buff, aligned_edge=m.LEFT)
-                hidden_rows.append(hidden_row)
+                    hidden_row = m.Text(self._hidden_char, **params)
+                    hidden_row.next_to(hidden_rows[i - 1], m.DOWN, buff=v_buff, aligned_edge=m.LEFT)
+                    hidden_rows.append(hidden_row)
 
-            # only return the row and not the hidden elements
-            return m.VGroup(*rows)
+                # only return the row and not the hidden elements
+                return m.VGroup(*rows)
+
 
     def title_text(self, t: str, **kwargs) -> m.Mobject:
         return self.term_text(t, font_size=self.font_size_large, **kwargs)
