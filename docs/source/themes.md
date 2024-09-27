@@ -3,10 +3,6 @@
 Manta themes are bases on ASCII color codes that you might know from customizing your terminal. 
 The themes basically defines color values for different for a few predefined colors. 
 
-```{tip}
-ASd
-```
-
 ## Catppuccin
 
 ```{Note}

@@ -26,7 +26,6 @@ This is a tip.
 
 ```{seealso}
 This is a seealso.
-
 ```
 
 ```{include} ../../README.md
