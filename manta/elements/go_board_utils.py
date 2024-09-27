@@ -5,6 +5,19 @@ from elements.rectangle_utils import RectangleUtils
 
 
 class GoBoardUtils(RectangleUtils):
+    """
+    Utility class for creating Gantt charts in a manta scene.
+
+    Usage:
+
+    import the class ad let your slide template class inherits from GanttUtils.
+    Make sure the slide template class comes last in the inheritance chain.
+
+    Example:
+    ```python
+
+    ```
+    """
 
     def go_board(self, board: list[list[str | float]] = None,
                  board_size: tuple[int, int] = (19, 19),

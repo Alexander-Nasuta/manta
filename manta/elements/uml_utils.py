@@ -12,17 +12,45 @@ from rich.panel import Panel
 from rich.text import Text
 
 from elements.rectangle_utils import RectangleUtils
-from manta.logger import log
-
-from manta.elements.shapes import ShapeUtils
 
 MethodMeta = namedtuple('MethodMeta', ['name', 'parameters_with_types', 'return_type'])
 
 
 class UmlUtils(RectangleUtils):
+    """
+     A utility class for generating UML class diagrams using Manim and Rich.
+
+    Inherits from:
+        RectangleUtils: Provides additional rectangle-related utilities.
+
+    Methods:
+        _extract_type_str(type_str: str) -> str:
+            Extracts and returns the type string without the "<class '" and "'>".
+
+        _extract_parameters_with_types(parameters: mappingproxy) -> list[tuple[str, str]]:
+            Extracts and returns a list of parameter names and their types from the given parameters.
+
+        _print_uml_class(attributes_with_types: dict[str, str], methods: list[MethodMeta], class_name: str) -> None:
+            Prints the UML class diagram to the console using Rich.
+
+        _get_attributes_with_types(klass: type) -> dict[str, str]:
+            Returns a dictionary of attribute names and their types for the given class.
+
+        _get_methods_with_types(klass: type, unknown_return_type: str = 'Any') -> list[MethodMeta]:
+            Returns a list of MethodMeta namedtuples containing method names, parameters with types, and return types for the given class.
+
+        uml_class_diagram(klass: type, class_name: str = None, print_class_in_console: bool = True, color_python_keyword: bool = True, type_t2c=None, visibility_color=None, fields_color=None, colon_separator_color=None, type_color=None, type_color_keywords=None, type_special_characters_color=None, parameters_color=None) -> m.VGroup:
+            Generates and returns a UML class diagram for the given class as a Manim VGroup.
+    """
 
     @staticmethod
     def _extract_type_str(type_str: str) -> str:
+        """
+        Extracts and returns the type string without the "<class '" and "'>".
+
+        :param type_str:  The type string to process.
+        :return: The processed type string.
+        """
         if type_str.startswith("<class '") and type_str.endswith("'>"):
             # return the type string without the "<class '" and "'>"
             return type_str[8:-2]
@@ -31,6 +59,12 @@ class UmlUtils(RectangleUtils):
 
     @staticmethod
     def _extract_parameters_with_types(parameters: mappingproxy) -> list[tuple[str, str]]:
+        """
+        Extracts and returns a list of parameter names and their types from the given parameters.
+
+        :param parameters: The parameters to process.
+        :return: A list of tuples containing parameter names and their types.
+        """
         result = []
         for name, param in parameters.items():
             if name == "self":
@@ -41,6 +75,17 @@ class UmlUtils(RectangleUtils):
 
     @staticmethod
     def _print_uml_class(attributes_with_types: dict[str, str], methods: list[MethodMeta], class_name: str) -> None:
+        """
+        Prints the UML class diagram to the console using Rich.
+
+        :param attributes_with_types: Prints the UML class diagram to the console using Rich.
+        :param methods: a list of MethodMeta namedtuples containing method names, parameters with types, and return
+                        types.
+        :param class_name: The name of the class. If not provided, the class name will be extracted from the class
+                           object. this can be used to prefix the class name with the package name it originates from
+                           for example `gymnasium.Env` instead of `env`.
+        :return: None
+        """
         # Create a Console object
         console = Console()
 
@@ -105,6 +150,12 @@ class UmlUtils(RectangleUtils):
 
     @staticmethod
     def _get_attributes_with_types(klass: type) -> dict[str, str]:
+        """
+        Returns a dictionary of attribute names and their types for the given class.
+
+        :param klass: The class to process.
+        :return: A dictionary of attribute names and their types.
+        """
         return {
             attr: UmlUtils._extract_type_str(str(typ))
             for attr, typ
@@ -113,6 +164,13 @@ class UmlUtils(RectangleUtils):
 
     @staticmethod
     def _get_methods_with_types(klass: type, unknown_return_type: str = 'Any') -> list[MethodMeta]:
+        """
+        Returns a list of MethodMeta namedtuples containing method names, parameters with types, and return types for the given class.
+
+        :param klass: The class to process.
+        :param unknown_return_type: The default return type if not specified.
+        :return: A list of MethodMeta namedtuples.
+        """
         # Get all methods of the class
         methods_raw = [func for func in dir(klass) if
                        callable(getattr(klass, func)) and not func.startswith("__")]
@@ -144,6 +202,23 @@ class UmlUtils(RectangleUtils):
                           type_special_characters_color=None,
                           parameters_color=None,
                           ) -> m.VGroup:
+        """
+        Generates and returns a UML class diagram for the given class as a Manim VGroup.
+
+        :param klass: The class to generate the diagram for.
+        :param class_name: The name of the class. Defaults to the class's __name__.
+        :param print_class_in_console: Whether to print the class diagram to the console. Defaults to True.
+        :param color_python_keyword: Whether to color Python keywords. Defaults to True.
+        :param type_t2c: A dictionary mapping types to colors.
+        :param visibility_color: The color for visibility symbols.
+        :param fields_color: The color for field names.
+        :param colon_separator_color: The color for colon separators.
+        :param type_color: The color for types.
+        :param type_color_keywords: The color for type keywords.
+        :param type_special_characters_color: The color for special characters in types.
+        :param parameters_color: The color for parameter names.
+        :return: A Manim VGroup representing the UML class diagram.
+        """
         if type_t2c is None:
             type_t2c = {}
         if class_name is None:

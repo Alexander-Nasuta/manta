@@ -2,7 +2,12 @@ from manta.color_theme.catppucin.catppuccin_theme_ABC import CatppuccinThemeABC
 
 
 class CatppuccinMochaTheme(CatppuccinThemeABC):
+    """
+    CatppuccinMochaTheme defines colors for the Catppuccin Mocha colorscheme as defined in
+    https://github.com/catppuccin/catppuccin
 
+    This Theme is the default for manta slide templates.
+    """
     # ThemeABC
     background_color: str = "#1e1e2e"
     background_color_bright: str = "#313244"

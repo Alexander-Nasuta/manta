@@ -4,7 +4,42 @@ from abc import ABC, abstractmethod
 class ColorThemeABC(ABC):
     f"""
     
-    Abstract Base Class for Color Themes
+    ColorThemeABC is an abstract base class for configuring default colors for the presentation.
+    
+    The configuration is inspired by the configuring colors for terminal applications like Alacritty or 
+    Wezterm. 
+    Terminal applications are often configured with a color scheme that defines 16 ANSI colors.
+    
+    Color themes for manta have to at least define the following colors:
+    
+    - background_color
+    - background_color_bright
+    - surface_color
+    - outline_color
+    - font_color
+    - font_color_secondary
+    - black
+    - black_bright
+    - red
+    - red_bright
+    - green
+    - green_bright
+    - yellow
+    - yellow_bright
+    - blue
+    - blue_bright
+    - magenta
+    - magenta_bright
+    - cyan
+    - cyan_bright
+    - white
+    - white_bright
+    
+    The colors are defined as hex strings.
+    
+    Manta defines a default color theme in the color_theme module.
+    These color theme might define additional colors. For example catpuccin theme defines colors
+    like 'rosewater' or 'flamingo' among other. 
     
     """
     background_color: str

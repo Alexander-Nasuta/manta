@@ -2,6 +2,10 @@ from manta.color_theme.catppucin.catppuccin_theme_ABC import CatppuccinThemeABC
 
 
 class CatppuccinLatteTheme(CatppuccinThemeABC):
+    """
+    CatppuccinLatteTheme defines colors for the Catppuccin Latte colorscheme as defined in
+    https://github.com/catppuccin/catppuccin
+    """
 
     # ThemeABC
     background_color: str = "#eff1f5"

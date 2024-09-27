@@ -2,6 +2,10 @@ from manta.color_theme.catppucin.catppuccin_theme_ABC import CatppuccinThemeABC
 
 
 class CatppuccinFrappeTheme(CatppuccinThemeABC):
+    """
+    CatppuccinFrappeTheme defines colors for the Catppuccin Frappe colorscheme as defined in
+    https://github.com/catppuccin/catppuccin
+    """
 
     # ThemeABC
     background_color: str = "#303446"

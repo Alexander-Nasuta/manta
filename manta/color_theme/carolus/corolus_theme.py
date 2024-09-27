@@ -2,6 +2,10 @@ from manta.color_theme.color_theme_ABC import ColorThemeABC
 
 
 class CarolusTheme(ColorThemeABC):
+    """
+    CarolusTheme defines colors specified by CarolusTheme. It is inspired by the color scheme of the weights and biases
+    website: https://wandb.ai/site
+    """
     background_color: str = "#1A1C1F"
     background_color_bright: str = "#212328"
 

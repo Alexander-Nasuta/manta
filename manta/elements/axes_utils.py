@@ -1,15 +1,67 @@
-import itertools
 from typing import Sequence
 
 import manim as m
 from manim import config
 
-from manta.logger import log
-
 from manta.elements.shapes import ShapeUtils
 
 
 class AxesUtils(ShapeUtils):
+    """
+    Utility class for creating axes in a manta scene.
+
+    Usage:
+
+    import the class ad let your slide template class inherit from AxesUtils.
+    Make sure the slide template class comes last in the inheritance chain.
+
+    Example:
+    ```python
+    import manim as m
+    import numpy as np
+
+    from color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
+    from elements.axes_utils import AxesUtils
+    from slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
+
+
+    class MyAxesExampleScene(AxesUtils, MinimalSlideTemplate):
+
+    def construct(self):
+        self.play(
+            self.set_title_row(
+                title="Manta Axes",
+            ),
+        )
+
+        axes = self.term_axes(
+            x_range=[-10, 10.3, 1],
+            y_range=[-1.5, 1.5, 1],
+            x_length=10,
+            x_axis_config={
+                "numbers_to_include": np.arange(-10, 10.01, 2),
+                "numbers_with_elongated_ticks": np.arange(-10, 10.01, 2),
+            },
+            tips=False,
+        )
+
+        sin_graph = axes.plot(lambda x: np.sin(x), color=self.blue)
+        cos_graph = axes.plot(lambda x: np.cos(x), color=self.red)
+
+        self.play(
+            m.AnimationGroup(
+                m.FadeIn(axes),
+                m.AnimationGroup(
+                    m.Create(sin_graph),
+                    m.Create(cos_graph),
+                    lag_ratio=0.15,
+                    run_time=1.25,
+                ),
+                lag_ratio=0.5,
+            )
+        )
+    ```
+    """
 
     @staticmethod
     def term_axes_minimal(x_range: Sequence[float] | None = None,

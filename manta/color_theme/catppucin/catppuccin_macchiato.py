@@ -2,7 +2,10 @@ from manta.color_theme.catppucin.catppuccin_theme_ABC import CatppuccinThemeABC
 
 
 class CatppuccinMacchiatoTheme(CatppuccinThemeABC):
-
+    """
+    CatppuccinMacchiatoTheme defines colors for the Catppuccin Macchiato colorscheme as defined in
+    https://github.com/catppuccin/catppuccin
+    """
     # ThemeABC
     background_color: str = "#24273a"
     background_color_bright: str = "#363a4f"

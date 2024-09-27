@@ -10100,6 +10100,15 @@ class NerdfontIconUtils(ColorThemeABC, FontABC):
     default_icon_color: str = None
 
     def symbol(self, symbol: int | str, **kwargs):
+        """
+        Returns a symbol from the Nerdfont icon set.
+
+        :param symbol:  The symbol to retrieve. This can be either an integer representing the Unicode code point or a
+                        string representing the symbol name.
+        :param kwargs: additional keyword arguments to customize the symbol's appearance. (passed to the manim `Text`
+                       function)
+        :return: a Manim Text object representing the requested symbol.
+        """
         color = kwargs.pop("font_color", self.default_icon_color)  # for consistency with math_text
         if color is None:
             color = self.yellow
@@ -10121,6 +10130,17 @@ class NerdfontIconUtils(ColorThemeABC, FontABC):
 
     @functools.lru_cache(maxsize=10)
     def symbol_t2c(self, color=None, **kwargs) -> dict:
+        """
+        a util function to maps symbols to colors. It can be used as the `t2c` argument for functions like
+        `m.Text` and `m.MathText` or manta util functions like `term_text`.
+
+        `color` and `font_color` serve the same purpose. If `color` is None, `font_color` will be used.
+        This funtion uses `**kwargs` to avoid errors when unspecified arguments are passed.
+
+        :param color: the color to use for the symbols
+        :param kwargs: may contain the key `font_color` to specify the color
+        :return:
+        """
         if color is None:
             color = kwargs.pop("font_color", self.yellow)  # for consistency with math_text
         return {chr(SYMBOLS_UNICODE[icon]): color for icon in SYMBOLS_UNICODE.keys()}

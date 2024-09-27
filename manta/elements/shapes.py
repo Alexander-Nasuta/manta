@@ -9,10 +9,47 @@ import numpy as np
 
 
 class ShapeUtils(TextUtils, ColorThemeABC, FontABC):
+    """
+    A utility class for creating various shapes in a Manim scene.
+
+    Inherits from:
+        TextUtils: Provides text-related utilities.
+        ColorThemeABC: Provides color theme utilities.
+        FontABC: Provides font-related utilities.
+
+    Attributes:
+        rectangle_default_fill_color: Default fill color for rectangles.
+        rectangle_default_stroke_color: Default stroke color for rectangles.
+
+    Methods:
+        rounded_rectangle(width, height, corner_radius=0.1, **kwargs) -> m.RoundedRectangle:
+            Creates a rounded rectangle with the specified dimensions and corner radius.
+
+        rectangle(width, height, **kwargs) -> m.RoundedRectangle:
+            Creates a rectangle with the specified dimensions.
+
+        circle(radius: float, **kwargs) -> m.Circle:
+            Creates a circle with the specified radius.
+
+        math_circle(math_text: str, radius=0.25, font_color=None, text_kwargs=None, **kwargs) -> m.VGroup | m.Circle:
+            Creates a circle with mathematical text inside it.
+
+        math_arrow(*args, color: str = None, **kwargs) -> m.Arrow:
+            Creates an arrow with a custom arrow tip.
+    """
     rectangle_default_fill_color = None
     rectangle_default_stroke_color = None
 
     def rounded_rectangle(self, width, height, corner_radius=0.1, **kwargs):
+        """
+        Creates a rounded rectangle with the specified dimensions and corner radius.
+
+        :param width:
+        :param height:
+        :param corner_radius:
+        :param kwargs:
+        :return:
+        """
         return m.RoundedRectangle(
             corner_radius=0.125,
             height=height,

@@ -2,6 +2,11 @@ from manta.color_theme.color_theme_ABC import ColorThemeABC
 
 
 class RwthTheme(ColorThemeABC):
+    """
+    The RwthTheme defines the color scheme of the RWTH Aachen University.
+
+    It defines additional color colors and color shades.
+    """
     background_color: str = "#FFFFFF"
     background_color_bright: str = "#ECEDED"
 

@@ -2,6 +2,13 @@ from manta.color_theme.color_theme_ABC import ColorThemeABC
 
 
 class CatppuccinThemeABC(ColorThemeABC):
+    """
+    The CatppuccinThemeABC defines the color scheme of the Catppuccino color theme.
+    It defines additional color colors to the ones defined in the ColorThemeABC.
+
+    The colors are taken from: https://github.com/catppuccin/catppuccin
+
+    """
     rosewater: str
     flamingo: str
     pink: str

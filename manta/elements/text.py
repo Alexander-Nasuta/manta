@@ -15,9 +15,35 @@ iosevka_nerdfont_path = manta_resources_dir / "IosevkaTermSlabNerdFontMono-Regul
 
 
 class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
+    """
+    Utility class for creating Text object in a manta scene.
+
+    The main reason for this class is to configurations to a font (the font is defined in FontABC or a subclass
+    such as IosevkaTermSizing24). By default manta slide templates use the font 'IosevkaTerm Nerd Font Mono' and the
+    font sizes specified in IosevkaTermSizing24.
+
+    Other classes can inherit from this class to realise more sophisticated manim objects. For example, the
+    RectangleUtils class inherits from TextUtils to create rectangles with bullet points and icons.
+
+    Usage:
+
+    All Manta templates inherit from a more sophisticated utility class like RectangleUtils. That means that all
+    functions in this class can be accessed in a manta template scene by default.
+    """
     _hidden_char = "█"
 
     def term_paragraph(self, t: str, **kwargs) -> m.Paragraph:
+        """
+        Create a paragraph object with the configured default font, font color and font size.
+        This function is a wrapper of manims Paragraph function and applies the manta configuration and theming to
+        the text.
+
+        see: https://docs.manim.community/en/stable/reference/manim.mobject.text.text_mobject.Paragraph.html
+
+        :param t: the text of the paragraph
+        :param kwargs: additional parameters for manims paragraph function
+        :return:
+        """
         color = kwargs.pop("font_color", None)
         default_params = {
             "font": self.font_name,
@@ -28,41 +54,59 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
         return m.Paragraph(t, **params)
 
     def term_text(self, t: str | None, v_buff=0.05, **kwargs) -> m.VGroup:
-        with m.register_font(iosevka_nerdfont_path):
-            if t is None:
-                return m.VGroup()
-            color = kwargs.pop("font_color", None)
-            default_params = {
-                "font": self.font_name,
-                "color": self.font_color if color is None else color,
-                "font_size": self.font_size_normal,
-            }
-            params = {**default_params, **kwargs}
+        """
+        Create a text object with the configured default font, font color and font size.
+        This function is a wrapper of manims Text function and applies the manta configuration and theming to the text.
 
-            lines = t.split("\n")
-            if len(lines) == 1:
-                return m.VGroup(m.Text(t, **params))
-            else:
-                hidden_text = m.Text(self._hidden_char, **params)
-                hidden_rows = [hidden_text]
+        This function also works with multiline text!
+        The text is split by the newline character and each line is placed below the previous line with a vertical
+        buffer.
 
-                first_row = m.Text(lines[0], **params)
-                rows = [first_row]
+        see https://docs.manim.community/en/stable/reference/manim.mobject.text.html
 
-                first_row.align_to(hidden_text, m.LEFT)
+        :param t: the text to display
+        :param v_buff: the vertical buffer between the lines
+        :param kwargs: additional parameters for manims text function
+        :return:
+        """
+        import importlib.resources as pkg_resources
+        import manta.resources
+        with pkg_resources.path(manta.resources, 'IosevkaTermSlabNerdFontMono-Regular.ttf') as font_path:
+            with m.register_font(str(font_path)):
+                if t is None:
+                    return m.VGroup()
+                color = kwargs.pop("font_color", None)
+                default_params = {
+                    "font": self.font_name,
+                    "color": self.font_color if color is None else color,
+                    "font_size": self.font_size_normal,
+                }
+                params = {**default_params, **kwargs}
 
-                # rest of the rows
-                for i in range(1, len(lines)):
-                    row = m.Text(lines[i], **params)
-                    row.next_to(hidden_rows[i - 1], m.DOWN, buff=v_buff, aligned_edge=m.LEFT)
-                    rows.append(row)
+                lines = t.split("\n")
+                if len(lines) == 1:
+                    return m.VGroup(m.Text(t, **params))
+                else:
+                    hidden_text = m.Text(self._hidden_char, **params)
+                    hidden_rows = [hidden_text]
 
-                    hidden_row = m.Text(self._hidden_char, **params)
-                    hidden_row.next_to(hidden_rows[i - 1], m.DOWN, buff=v_buff, aligned_edge=m.LEFT)
-                    hidden_rows.append(hidden_row)
+                    first_row = m.Text(lines[0], **params)
+                    rows = [first_row]
 
-                # only return the row and not the hidden elements
-                return m.VGroup(*rows)
+                    first_row.align_to(hidden_text, m.LEFT)
+
+                    # rest of the rows
+                    for i in range(1, len(lines)):
+                        row = m.Text(lines[i], **params)
+                        row.next_to(hidden_rows[i - 1], m.DOWN, buff=v_buff, aligned_edge=m.LEFT)
+                        rows.append(row)
+
+                        hidden_row = m.Text(self._hidden_char, **params)
+                        hidden_row.next_to(hidden_rows[i - 1], m.DOWN, buff=v_buff, aligned_edge=m.LEFT)
+                        hidden_rows.append(hidden_row)
+
+                    # only return the row and not the hidden elements
+                    return m.VGroup(*rows)
 
 
     def title_text(self, t: str, **kwargs) -> m.Mobject:
@@ -70,6 +114,31 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
 
     def text_mono(self, t: str, v_buff=0.1, t2c=None, t2b=None, t2c_strs: list[str] = None,
                   t2w_strs: list[str] = None, t2c_color=None, color_icons=True, **kwargs) -> m.VGroup:
+        """
+        Create a monospaced text object with the configured default font, font color and font size.
+
+        This function can be used to display ASCI tables, ASCI art or other text that should be displayed in a
+        monospaced format.
+
+        by default this class introduces a small vertical buffer between the lines. When creating Tables or Boxes you
+        might want to use the function mono_block, which is a wrapper for this function, but without any vertical
+        spacing between lines.
+
+        The following websites might be useful to create monospaced text:
+        - https://monosketch.io/
+        - https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
+
+        :param t: the text to display. This can be a multiline text
+        :param v_buff: the vertical buffer between the lines
+        :param t2c: a dictionary that maps substrings to colors.
+        :param t2b: a dictionary that maps substrings a bold font weight.
+        :param t2c_strs: a list of substrings that should be colored. This is a shortcut for t2c.
+        :param t2w_strs: a list of substrings that should be bold. This is a shortcut for t2b.
+        :param t2c_color: the color for substrings defined by the t2c_strs parameter.
+        :param color_icons: whether to color icons in the text. Default is true.
+        :param kwargs: additional parameters for mantas term_text function
+        :return: a manim VGroup object
+        """
         t2c_strs = [] if t2c_strs is None else t2c_strs
         t2w_strs = [] if t2w_strs is None else t2w_strs
 
@@ -111,7 +180,7 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
             # print(f"hidden_row_content: {hidden_row_content}")
             hidden_row_text = self.term_text(hidden_row_content, **kwargs)
 
-            row_text_encoded = str(lines[i]).replace(" ", "█")
+            row_text_encoded = str(lines[i]).replace(" ", self._hidden_char)
             # append "█" to row_text_encoded till it has n_cols characters
             row_text_encoded += self._hidden_char * (n_cols - len(row_text_encoded))
 
@@ -132,9 +201,39 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
         return block_group
 
     def mono_block(self, t: str, **kwargs) -> m.VGroup:
+        """
+        a wrapper function for mantas text_mono function. It is basically the same as text_mono just with a default
+        line spacing of 0.
+
+        This function is useful for ASCII art and ASCII Tables.
+
+        The following websites might be useful to create ASCII art:
+        - https://monosketch.io/
+        - https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
+
+        :param t: the text to display. This can be a multiline text
+        :param kwargs: additional parameters for mantas text_mono function
+        :return:
+        """
         return self.text_mono(t, v_buff=0, **kwargs)
 
     def term_math_text(self, math_text: str, color=None, font_color=None, **kwargs) -> m.Mobject:
+        """
+        A utility function to create Latex math texts to in Latex console styling.
+        This is useful to make math formulae, that fit to the general terminal like styling used in manta.
+
+        This function is wrapper of manims Tex function.
+        See: https://docs.manim.community/en/stable/reference/manim.mobject.text.tex_mobject.Tex.html
+
+        the parameters `color` and `font_color` serve the same purpose. These two option are present to be consistent
+        with the rest of mantas utility functions.
+
+        :param math_text: a latex math style text (without the surrounding $-signs).
+        :param color: the color of the text.
+        :param font_color: the color of the text.
+        :param kwargs: additional parameters for manims
+        :return: a manim Mobject
+        """
         if font_color is None:
             font_color = self.font_color
         if color is None:
@@ -150,6 +249,26 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
                           h_buff=0.125,
                           bullet_icon_kwargs=None,
                           **kwargs) -> m.VGroup:
+        """
+        A utility function to create a list of bullet points with a specific icon for the bullet point.
+
+        The character for a bullet point can be any nerd font icon. The default icon is a small circle.
+        The icon can be a string (like ), a string of the nerd font icon name (like)
+
+        Example bullet point list:
+
+             Bullet Point 1
+             Bullet Point 2
+             Bullet Point 3
+
+        :param bulletpoints: a list of strings that should be displayed as bullet points.
+        :param bullet_icon:  the icon that should be used for the bullet point. This can be a string or an integer.
+        :param v_buff: the vertical buffer between the bullet points.
+        :param h_buff: the horizontal buffer between the bullet point icon and the text.
+        :param bullet_icon_kwargs: additional parameters for the bullet icon (for the symbol function).
+        :param kwargs: additional parameters for the term_text function.
+        :return: a manim VGroup object.
+        """
         if bullet_icon_kwargs is None:
             bullet_icon_kwargs = {}
 
@@ -168,6 +287,29 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
     def titled_bulletpoints(self, titled_bulletpoints: list[tuple[str, list[str]]], bullet_icon: str = 'circle-small',
                             v_buff=0.25, h_buff=0.125,
                             bullet_icon_kwargs: dict = None, title_kwargs: dict = None, **kwargs) -> m.VGroup:
+        """
+        A utility function to create a list of titled bullet points with a specific icon for the bullet point.
+
+        Example titled bullet point list:
+
+            Title 1
+                 Bullet Point 1
+                 Bullet Point 2
+            Title 2
+                 Bullet Point 1
+                 Bullet Point 2
+                 Bullet Point 3
+
+        :param titled_bulletpoints: a list of tuples where the first element is the title and the second element is a
+                                    list of strings that should be displayed as bullet points.
+        :param bullet_icon: the icon that should be used for the bullet point. This can be a string or an integer.
+        :param v_buff: the vertical buffer between the bullet points.
+        :param h_buff: the horizontal buffer between the bullet point icon and the text.
+        :param bullet_icon_kwargs: additional parameters for the bullet icon (for the symbol function).
+        :param title_kwargs: additional parameters for the term_text function.
+        :param kwargs: additional parameters for the bullet_point_list function
+        :return: a manim VGroup object.
+        """
         if bullet_icon_kwargs is None:
             bullet_icon_kwargs = {}
         if title_kwargs is None:
@@ -188,6 +330,14 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
         return m.VGroup(*titled_bullet_point_groups).arrange(m.DOWN, buff=v_buff, aligned_edge=m.LEFT)
 
     def color_theme_smoke_test_group(self) -> m.VGroup:
+        """
+        A smoke test function to test the color theme of the manta project.
+
+        This function replicates the theme preview of wezterm color themes.
+        see: https://wezfurlong.org/wezterm/colorschemes/c/index.html
+
+        :return: a manim VGroup object
+        """
         def get_cell(cell_text: str, text_color: str, bg_color: str, is_bolt: bool) -> m.VGroup:
             t2w = {}
             t2c = {"█": self.background_color}  # this is a dirty way to align the first column, but since it is only

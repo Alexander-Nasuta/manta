@@ -1,4 +1,4 @@
-from slide_templates.classic.classic_slide_template import ClassicSlideTemplate
+from manta.slide_templates.classic.classic_slide_template import ClassicSlideTemplate
 
 
 class ExampleClassicSlide(ClassicSlideTemplate):

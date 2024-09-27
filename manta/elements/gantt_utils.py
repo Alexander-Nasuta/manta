@@ -1,14 +1,22 @@
-import itertools
-from typing import Sequence
-
 import manim as m
-from manim import config
 
 from elements.axes_utils import AxesUtils
-from manta.logger import log
 
 
 class GanttUtils(AxesUtils):
+    """
+    Utility class for creating Gantt charts in a manta scene.
+
+    Usage:
+
+    import the class ad let your slide template class inherits from GanttUtils.
+    Make sure the slide template class comes last in the inheritance chain.
+
+    Example:
+    ```python
+
+    ```
+    """
 
     def gantt_chart_without_ticks(self, width: float, height: float, data: list[dict], x_range: float = None,
                                   y_range=None,
