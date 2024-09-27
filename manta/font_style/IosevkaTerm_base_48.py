@@ -3,7 +3,7 @@ from manta.font_style.fontABC import FontABC
 
 class IosevkaTerm48(FontABC):
 
-    font_name: str = "IosevkaTerm Nerd Font Mono"
+    font_name: str = "IosevkaTerm Nerd Font"
 
     # for a base font size of 48pt
     font_size_tiny: int = 24
