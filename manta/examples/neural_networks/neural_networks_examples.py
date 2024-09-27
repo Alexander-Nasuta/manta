@@ -1,8 +1,8 @@
 import manim as m
 
-from color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
-from elements.neural_networks_utils import NeuralNetworkUtils
-from slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
+from manta.color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
+from manta.elements.neural_networks_utils import NeuralNetworkUtils
+from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 
 class MyNeuralNetwork_example(NeuralNetworkUtils, MinimalSlideTemplate):

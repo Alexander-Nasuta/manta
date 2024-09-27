@@ -1,5 +1,5 @@
-from color_theme.catppucin.catppuccin_frappe import CatppuccinFrappeTheme
-from slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
+from manta.color_theme.catppucin.catppuccin_frappe import CatppuccinFrappeTheme
+from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 
 class MyCatppuccinFrappeScene(CatppuccinFrappeTheme, MinimalSlideTemplate):

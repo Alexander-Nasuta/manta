@@ -1,7 +1,7 @@
 import manim as m
 
-from color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
-from slide_templates.minimal.minimal_intro_slide import MinimalIntroSlide
+from manta.color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
+from manta.slide_templates.minimal.minimal_intro_slide import MinimalIntroSlide
 
 import manta.docbuild.image_path_utils as paths
 

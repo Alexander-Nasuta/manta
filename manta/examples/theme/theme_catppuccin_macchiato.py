@@ -1,7 +1,7 @@
 import manim as m
 
-from color_theme.catppucin.catppuccin_macchiato import CatppuccinMacchiatoTheme
-from slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
+from manta.color_theme.catppucin.catppuccin_macchiato import CatppuccinMacchiatoTheme
+from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 
 class MyThemedSceneCatppuccinMacchiato(CatppuccinMacchiatoTheme, MinimalSlideTemplate):

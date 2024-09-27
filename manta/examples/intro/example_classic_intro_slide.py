@@ -1,9 +1,9 @@
 import manim as m
 
-from color_theme.catppucin.catppuccin_latte import CatppuccinLatteTheme
+from manta.color_theme.catppucin.catppuccin_latte import CatppuccinLatteTheme
 
 import manta.docbuild.image_path_utils as paths
-from slide_templates.classic.classic_intro_slide import ClassicIntroSlide
+from manta.slide_templates.classic.classic_intro_slide import ClassicIntroSlide
 
 
 class ExampleIntroSlideWithImages(CatppuccinLatteTheme, ClassicIntroSlide):

@@ -1,7 +1,7 @@
 import manim as m
 
-from color_theme.tokyo_night.tokyo_night import TokyoNight
-from slide_templates.classic.classic_slide_template import ClassicSlideTemplate
+from manta.color_theme.tokyo_night.tokyo_night import TokyoNight
+from manta.slide_templates.classic.classic_slide_template import ClassicSlideTemplate
 
 
 class MyMinimalSlideTemplateExample(

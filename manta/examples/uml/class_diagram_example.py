@@ -1,9 +1,9 @@
 import manim as m
 
-from color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
-from elements.neural_networks_utils import NeuralNetworkUtils
-from elements.uml_utils import UmlUtils
-from slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
+from manta.color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
+from manta.elements.neural_networks_utils import NeuralNetworkUtils
+from manta.elements.uml_utils import UmlUtils
+from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 
 class MyUmlClassDiagramScene(UmlUtils, NeuralNetworkUtils, MinimalSlideTemplate):

@@ -1,5 +1,5 @@
-from slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
-from slide_templates.rwth.rwth_slide_template import RwthSlideTemplate
+from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
+from manta.slide_templates.rwth.rwth_slide_template import RwthSlideTemplate
 
 
 class MyMinimalSlideTemplateExample(RwthSlideTemplate):

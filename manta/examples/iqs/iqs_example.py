@@ -1,9 +1,9 @@
 
 import manim as m
 
-from color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
-from elements.iqs_utils import IQS_Utils
-from slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
+from manta.color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
+from manta.elements.iqs_utils import IQS_Utils
+from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 
 class MyIQSExampleScene(IQS_Utils, MinimalSlideTemplate):

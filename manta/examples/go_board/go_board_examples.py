@@ -1,9 +1,9 @@
 import manim as m
 import numpy as np
 
-from color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
-from elements.go_board_utils import GoBoardUtils
-from slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
+from manta.color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
+from manta.elements.go_board_utils import GoBoardUtils
+from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 
 class MyGoBoardExampleScene(GoBoardUtils, MinimalSlideTemplate):

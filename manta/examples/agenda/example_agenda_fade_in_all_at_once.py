@@ -1,7 +1,7 @@
 import manim as m
 
-from elements.rectangle_utils import RectangleUtils
-from slide_templates.title_slide import TitleSlide
+from manta.elements.rectangle_utils import RectangleUtils
+from manta.slide_templates.title_slide import TitleSlide
 
 
 class Agenda(RectangleUtils, TitleSlide):

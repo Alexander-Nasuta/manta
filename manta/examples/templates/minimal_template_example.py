@@ -1,4 +1,4 @@
-from slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
+from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 
 class MyMinimalSlideTemplateExample(MinimalSlideTemplate):

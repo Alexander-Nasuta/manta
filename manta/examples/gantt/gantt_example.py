@@ -1,8 +1,8 @@
 import manim as m
 
-from color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
-from elements.gantt_utils import GanttUtils
-from slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
+from manta.color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
+from manta.elements.gantt_utils import GanttUtils
+from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 
 class MyGanttExampleScene(GanttUtils, MinimalSlideTemplate):
