@@ -63,7 +63,7 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
         """
         import importlib.resources as pkg_resources
         import manta.resources
-        with pkg_resources.path(manta.resources, 'IosevkaTermSlabNerdFontMono-Regular.ttf') as font_path:
+        with pkg_resources.path(manta.resources, 'IosevkaNerdFont-Regular.ttf') as font_path:
             with m.register_font(str(font_path)):
                 if t is None:
                     return m.VGroup()
