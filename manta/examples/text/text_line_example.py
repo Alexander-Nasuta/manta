@@ -55,10 +55,5 @@ class MyShapesExamplesScene(MinimalSlideTemplate):
         )
 
 
-
-
-
-
-
 if __name__ == '__main__':
     MyShapesExamplesScene.render_video_medium()
