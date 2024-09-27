@@ -1,13 +1,25 @@
+/* Import the Iosevka font */
+@font-face {
+    font-family: 'HeavyData Nerd Font';
+    src: url('_static/IosevkaTermSlabNerdFontMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import url('https://cdn.jsdelivr.net/npm/iosevka@16.0.0/dist/iosevka.css');
+
+
+
 /* docs/source/_static/custom_font.css */
 body {
-    font-family: "IosevkaTerm Nerd Font", "IosevkaTermSlab Nerd Font", Arial, sans-serif;
+    font-family: "IosevkaTerm Nerd Font", "IosevkaTermSlab Nerd Font", 'Iosevka', 'Courier New', monospace;
 }
 
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "IosevkaTerm Nerd Font", "IosevkaTermSlab Nerd Font", Arial, sans-serif;
+    font-family: "IosevkaTerm Nerd Font", "IosevkaTermSlab Nerd Font", 'Iosevka', 'Courier New',monospace;
 }
 
-span, pre {
-    font-family: "IosevkaTerm Nerd Font Mono", "IosevkaTermSlab Nerd Font Mono", Arial, sans-serif;
+code, span, pre {
+    font-family: "IosevkaTerm Nerd Font Mono", "IosevkaTermSlab Nerd Font Mono", 'Iosevka','Courier New', monospace;
 }

@@ -5,14 +5,6 @@ from manta.color_theme.color_theme_ABC import ColorThemeABC
 from manta.elements.nerdfont_icons import NerdfontIconUtils
 from manta.font_style.fontABC import FontABC
 
-path_of_this_file = pl.Path(__file__).resolve()
-docbuild_dir = path_of_this_file.parent
-manta_dir = docbuild_dir.parent
-manta_project_root_fir = manta_dir.parent
-manta_resources_dir = manta_project_root_fir / "resources"
-
-iosevka_nerdfont_path = manta_resources_dir / "IosevkaTermSlabNerdFontMono-Regular.ttf"
-
 
 class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
     """
@@ -71,7 +63,7 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
         """
         import importlib.resources as pkg_resources
         import manta.resources
-        with pkg_resources.path(manta.resources, 'HeavyDataNerdFont-Regular.ttf') as font_path:
+        with pkg_resources.path(manta.resources, 'IosevkaTermSlabNerdFontMono-Regular.ttf') as font_path:
             with m.register_font(str(font_path)):
                 if t is None:
                     return m.VGroup()
@@ -107,7 +99,6 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
 
                     # only return the row and not the hidden elements
                     return m.VGroup(*rows)
-
 
     def title_text(self, t: str, **kwargs) -> m.Mobject:
         return self.term_text(t, font_size=self.font_size_large, **kwargs)
@@ -338,6 +329,7 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
 
         :return: a manim VGroup object
         """
+
         def get_cell(cell_text: str, text_color: str, bg_color: str, is_bolt: bool) -> m.VGroup:
             t2w = {}
             t2c = {"█": self.background_color}  # this is a dirty way to align the first column, but since it is only
