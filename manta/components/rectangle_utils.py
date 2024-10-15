@@ -1,6 +1,6 @@
 import manim as m
 
-from manta.elements.shapes import ShapeUtils
+from manta.components.shapes import ShapeUtils
 from manta.padding_style.paddingABC import PaddingABC
 
 

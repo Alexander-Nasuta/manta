@@ -1,6 +1,6 @@
-from color_theme.rwth.rwth_theme import RwthTheme
-from font_style.IosevkaTerm_base_24 import IosevkaTermSizing24
-from slide_templates.classic.classic_slide_template import ClassicSlideTemplate
+from manta.color_theme.rwth.rwth_theme import RwthTheme
+from manta.font_style.IosevkaTerm_base_24 import IosevkaTermSizing24
+from manta.slide_templates.classic.classic_slide_template import ClassicSlideTemplate
 
 import manta.docbuild.image_path_utils as path_utils
 

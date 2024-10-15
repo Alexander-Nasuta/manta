@@ -1,10 +1,10 @@
 from manta.slide_templates.minimal.minimal_intro_slide import MinimalIntroSlide
 
 
-class ExampleIntroSlide(MinimalIntroSlide):
+class MyIntroSlide(MinimalIntroSlide):
 
     title = "Manta"
-    subtitle = "A Framework for creating Presentation Slides \n with Manim"
+    subtitle = "A Framework for creating Presentation Slides \n with Manim and Python"
 
     def construct(self):
         self.play(
@@ -16,4 +16,4 @@ class ExampleIntroSlide(MinimalIntroSlide):
 
 
 if __name__ == '__main__':
-    ExampleIntroSlide.render_video_medium()
+    MyIntroSlide.render_video_medium()

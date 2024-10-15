@@ -1,10 +1,11 @@
 import manim as m
 
-from manta.elements.rectangle_utils import RectangleUtils
 from manta.slide_templates.title_slide import TitleSlide
 
 
-class Agenda(RectangleUtils, TitleSlide):
+class MyAgenda(
+    TitleSlide  # this is the base class for creating a slide which has title and subtitle elements
+):
 
     def construct(self):
         self.play(
@@ -56,7 +57,7 @@ class Agenda(RectangleUtils, TitleSlide):
             m.Circumscribe(agenda_point_a, color=self.blue)
         )
 
-        # aleternatively, you can use the following code to indicate a agenda point
+        # alternatively, you can use the following code to indicate a agenda point
         surrounding_rect = m.SurroundingRectangle(
             agenda_point_b,
             corner_radius=0.125, color=self.blue)
@@ -74,4 +75,4 @@ class Agenda(RectangleUtils, TitleSlide):
 
 
 if __name__ == '__main__':
-    Agenda.render_video_medium()
+    MyAgenda.render_video_medium()

@@ -3,7 +3,7 @@ import itertools
 import manim as m
 from manta.logger import log
 
-from manta.elements.shapes import ShapeUtils
+from manta.components.shapes import ShapeUtils
 
 
 class NeuralNetworkUtils(ShapeUtils):
@@ -255,7 +255,7 @@ class NeuralNetworkUtils(ShapeUtils):
         try:
             shared_nn, top_nn, bottom_nn, connection_arrows = two_headed_nn
         except ValueError as e:
-            log.warn("two_headed_nn should have 4 elements: shared_nn, top_nn, bottom_nn, connection_arrows. "
+            log.warn("two_headed_nn should have 4 components: shared_nn, top_nn, bottom_nn, connection_arrows. "
                       "please check if you indeed passed a two_headed_nn to this function.")
             raise e
 

@@ -3,7 +3,7 @@ import manim as m
 import numpy as np
 
 from color_theme.carolus.corolus_theme import CarolusTheme
-from elements.rectangle_utils import RectangleUtils
+from components.rectangle_utils import RectangleUtils
 
 
 class IQS_Utils(CarolusTheme, RectangleUtils):

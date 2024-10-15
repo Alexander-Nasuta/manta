@@ -1,6 +1,6 @@
 import manim as m
 
-from manta.elements.rectangle_utils import RectangleUtils
+from manta.components.rectangle_utils import RectangleUtils
 from manta.slide_templates.title_slide import TitleSlide
 
 

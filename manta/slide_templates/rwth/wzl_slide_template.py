@@ -1,5 +1,5 @@
-from color_theme.tokyo_night.tokyo_night import TokyoNight
-from slide_templates.rwth.rwth_slide_template import RwthSlideTemplate
+from manta.color_theme.tokyo_night.tokyo_night import TokyoNight
+from manta.slide_templates.rwth.rwth_slide_template import RwthSlideTemplate
 
 import manta.docbuild.image_path_utils as path_utils
 
@@ -13,7 +13,7 @@ class TestRwthSlideTemplate(RwthWZLSlideTemplate):
         self.play(
             self.set_title_row(
                 title="Title",
-                seperator=":",
+                seperator=": ",
                 subtitle="Subtitle"
             ),
             self.add_logos(),

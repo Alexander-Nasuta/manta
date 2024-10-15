@@ -11,7 +11,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 
-from elements.rectangle_utils import RectangleUtils
+from components.rectangle_utils import RectangleUtils
 
 MethodMeta = namedtuple('MethodMeta', ['name', 'parameters_with_types', 'return_type'])
 

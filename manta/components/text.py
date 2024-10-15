@@ -1,8 +1,11 @@
+import importlib.resources as pkg_resources
+import manta.resources
+
 import manim as m
 import pathlib as pl
 
 from manta.color_theme.color_theme_ABC import ColorThemeABC
-from manta.elements.nerdfont_icons import NerdfontIconUtils
+from manta.components.nerdfont_icons import NerdfontIconUtils
 from manta.font_style.fontABC import FontABC
 
 
@@ -59,10 +62,8 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
         :param t: the text to display
         :param v_buff: the vertical buffer between the lines
         :param kwargs: additional parameters for manims text function
-        :return:
+        :return: a manim VGroup object
         """
-        import importlib.resources as pkg_resources
-        import manta.resources
         with pkg_resources.path(manta.resources, 'IosevkaNerdFont-Regular.ttf') as font_path:
             with m.register_font(str(font_path)):
                 if t is None:
@@ -97,7 +98,7 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
                         hidden_row.next_to(hidden_rows[i - 1], m.DOWN, buff=v_buff, aligned_edge=m.LEFT)
                         hidden_rows.append(hidden_row)
 
-                    # only return the row and not the hidden elements
+                    # only return the row and not the hidden components
                     return m.VGroup(*rows)
 
     def title_text(self, t: str, **kwargs) -> m.Mobject:

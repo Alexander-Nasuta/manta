@@ -6,7 +6,7 @@ from manta.slide_templates.minimal.minimal_intro_slide import MinimalIntroSlide
 import manta.docbuild.image_path_utils as paths
 
 
-class ExampleIntroSlideWithImages(MinimalIntroSlide):
+class MyIntroSlideWithImages(MinimalIntroSlide):
     # replace 'paths.get_coala_background_abs_path()' with a string path to a background image
     # this can be a relative path or an absolute path
     background_picture = paths.get_coala_background_abs_path()
@@ -39,4 +39,4 @@ class ExampleIntroSlideWithImages(MinimalIntroSlide):
 
 
 if __name__ == '__main__':
-    ExampleIntroSlideWithImages.render_video_medium()
+    MyIntroSlideWithImages.render_video_medium()

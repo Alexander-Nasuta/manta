@@ -1,7 +1,7 @@
 import manim as m
 
 from manta.color_theme.color_theme_ABC import ColorThemeABC
-from manta.elements.text import TextUtils
+from manta.components.text import TextUtils
 from manta.font_style.fontABC import FontABC
 
 import math

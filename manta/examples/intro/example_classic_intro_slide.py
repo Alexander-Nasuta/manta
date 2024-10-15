@@ -6,7 +6,7 @@ import manta.docbuild.image_path_utils as paths
 from manta.slide_templates.classic.classic_intro_slide import ClassicIntroSlide
 
 
-class ExampleIntroSlideWithImages(CatppuccinLatteTheme, ClassicIntroSlide):
+class MyClassicIntroSlideWithImagesLightTheme(CatppuccinLatteTheme, ClassicIntroSlide):
     # replace 'paths.get_coala_background_abs_path()' with a string path to a background image
     # this can be a relative path or an absolute path
     background_picture = paths.get_coala_background_abs_path()
@@ -39,4 +39,4 @@ class ExampleIntroSlideWithImages(CatppuccinLatteTheme, ClassicIntroSlide):
 
 
 if __name__ == '__main__':
-    ExampleIntroSlideWithImages.render_video_medium()
+    MyClassicIntroSlideWithImagesLightTheme.render_video_medium()

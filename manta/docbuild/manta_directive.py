@@ -433,6 +433,8 @@ TEMPLATE = r"""
         {{ '' if no_autoplay else 'autoplay' }}
         src="./{{ output_file }}.mp4">
     </video>
+    
+    <p class="admonition-title">Code: {{ clsname }}</p>
 
 {% elif save_as_gif %}
 .. image:: /{{ filesrc_rel }}
@@ -441,6 +443,11 @@ TEMPLATE = r"""
 {% elif save_last_frame %}
 .. image:: /{{ filesrc_rel }}
     :align: center
+    
+    
+.. raw:: html
+    
+    <p class="admonition-title">Code: {{ clsname }}</p>
 
 {% endif %}
 {% if not hide_source %}

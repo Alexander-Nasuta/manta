@@ -1,6 +1,6 @@
 import manim as m
 
-from manta.elements.rectangle_utils import RectangleUtils
+from manta.components.rectangle_utils import RectangleUtils
 from manta.font_style.IosevkaTerm_base_24 import IosevkaTermSizing24
 from manta.slide_templates.base.base_colored_slide import BaseColorSlide
 

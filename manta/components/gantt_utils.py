@@ -1,6 +1,6 @@
 import manim as m
 
-from elements.axes_utils import AxesUtils
+from components.axes_utils import AxesUtils
 
 
 class GanttUtils(AxesUtils):

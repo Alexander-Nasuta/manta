@@ -2,6 +2,8 @@ from manta.slide_templates.rwth.rwth_slide_template import RwthSlideTemplate
 
 
 class MyRwthSlide(RwthSlideTemplate):
+    subtitle_color = RwthSlideTemplate.rwth_blau_75
+
     def construct(self):
         self.play(
             self.set_title_row(
@@ -13,14 +15,6 @@ class MyRwthSlide(RwthSlideTemplate):
             self.add_seperator_lines(),
         )
 
-        self.play(
-            self.change_subtitle("Die Universität, die sich Hochschule nennt!"),
-        )
-
-        self.wait(2)  # wait increases the index of the slide
-
-        self.fade_out_scene()
-
 
 if __name__ == '__main__':
-    MyRwthSlide.render_video_medium()
+    MyRwthSlide.show_last_frame()

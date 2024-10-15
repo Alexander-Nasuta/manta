@@ -24,7 +24,6 @@ author = 'Alexander Nasuta'
 # The full version, including alpha/beta/rc tags
 release = '0.6.8'
 
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -59,7 +58,6 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -72,56 +70,80 @@ html_theme = 'furo'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 html_css_files = [
-    'custom_colors.css',
+    'manim.css',
     'custom_font.css',
+    'manta.css',
 ]
+
+html_title = f"Manta v{release}"
 html_logo = "_static/logo.png"
 html_theme_options = {
+    # "source_repository": "",
+    # "source_branch": "main",
+    # "source_directory": "docs/source/",
+    # "light_logo": "manim-logo-sidebar.svg",
+    # "dark_logo": "manim-logo-sidebar-dark.svg",
     "light_css_variables": {
-        #"font-stack": "Changa, sans-serif",
-        #"font-stack--monospace": "Roboto Mono, monospace",
-        #"color-foreground-primary": "#dddddd",  # main text and headings
-        #"color-foreground-secondary": "#cccccc",  # secondary text
-        #"color-foreground-muted": "#d0d0d0",  # muted text
-        #"color-foreground-border": "#923eb1",  # for content borders
-        #"color-background-primary": "#160f30",  # for content
-        #"color-background-secondary": "#201146",  # for navigation + ToC
-        #"color-background-hover": "#4f4fb0",  # for navigation-item hover
-        #"color-background-hover--transparent": "#4f4fb000",
-        #"color-background-border": "#403333",  # for UI borders
-        #"color-background-item": "#411a30",  # for "background" items (eg: copybutton)
-        #"color-announcement-background": "#000000dd",  # announcements
-        #"color-announcement-text": "#eeebee",  # announcements
-        #"color-admonition-title-background--note": "#FFFFFF33",  # Note background
-        #"color-admonition-title-background--warning": "#FF000033",  # Warning background
-        #"color-admonition-background": "#FFFFFF11",  # Admonition backgrounds
-        #"color-brand-primary": "#eeeeee",  # brand colors (sidebar titles)
-        #"color-brand-content": "#00dfef",  # brand colors (hyperlink color)
-        #"color-highlight-on-target": "#333300",  # Highlighted text background
+        "color-content-foreground": "#4c4f69",  # Text
+        "color-background-primary": "#eff1f5",  # Base
+        "color-background-border": "#ccd0da",  # Surface0
+        "color-sidebar-background": "#e6e9ef",  # Mantle
+        "color-brand-content": "#7287fd",  # Lavender
+        "color-brand-primary": "#04a5e5",  # Sky
+        "color-link": "#1e66f5",  # Blue
+        "color-link--hover": "#8839ef",  # Mauve
+        "color-inline-code-background": "#f6f6f6",  # Keeping the original as no direct match
+        "color-foreground-secondary": "#209fb5",  # Sapphire
+
+        "color-admonition-title-background--warning": "rgba(254, 100, 11, 0.2)",  # Peach
+        "color-admonition-title--warning": "#fe640b",  # Peach
+
+        "color-admonition-title-background--note": "rgba(4, 165, 229, 0.2)",  # Sky
+        "color-admonition-title--note": "#04a5e5",  # Sky
+
+        "color-admonition-title-background--tip": "rgba(64, 160, 43, 0.2)",  # Green
+        "color-admonition-title--tip": "#40a02b",  # Green
+
+        "color-admonition-title-background--seealso": "rgba(30, 102, 245, 0.2)",  # Blue
+        "color-admonition-title--seealso": "#1e66f5",  # Blue
+
+        "color-sidebar-search-background": "#e6e9ef",  # Mantle
     },
     "dark_css_variables": {
-        #"font-stack": "Changa, sans-serif",
-        #"font-stack--monospace": "Roboto Mono, monospace",
-        #"color-foreground-primary": "#dddddd",  # main text and headings
-        #"color-foreground-secondary": "#cccccc",  # secondary text
-        #"color-foreground-muted": "#d0d0d0",  # muted text
-        #"color-foreground-border": "#923eb1",  # for content borders
-        #"color-background-primary": "#160f30",  # for content
-        #"color-background-secondary": "#201146",  # for navigation + ToC
-        #"color-background-hover": "#4f4fb0",  # for navigation-item hover
-        #"color-background-hover--transparent": "#4f4fb000",
-        #"color-background-border": "#403333",  # for UI borders
-        #"color-background-item": "#411a30",  # for "background" items (eg: copybutton)
-        #"color-announcement-background": "#000000dd",  # announcements
-        #"color-announcement-text": "#eeebee",  # announcements
-        #"color-admonition-title-background--note": "#FFFFFF33",  # Note background
-        #"color-admonition-title-background--warning": "#FF000033",  # Warning background
-        #"color-admonition-background": "#FFFFFF11",  # Admonition backgrounds
-        #"color-brand-primary": "#eeeeee",  # brand colors (sidebar titles)
-        #"color-brand-content": "#00dfef",  # brand colors (hyperlink color)
-        #"color-highlight-on-target": "#333300",  # Highlighted text background
-    }
-    #"sidebar_hide_name": False,
+        "color-content-foreground": "#cdd6f4",  # Text
+        "color-background-primary": "#1e1e2e",  # Base
+        "color-background-border": "#313244",  # Surface0
+        "color-sidebar-background": "#181825",  # Mantle
+        "color-brand-content": "#b4befe",  # Lavender
+        "color-brand-primary": "#89dceb",  # Sky
+        "color-link": "#89b4fa",  # Blue
+        "color-link--hover": "#cba6f7",  # Mauve
+        "color-inline-code-background": "#313244",  # Surface0
+        "color-foreground-secondary": "#74c7ec",  # Sapphire
+
+        "color-admonition-title-background": "rgba(203, 166, 247, 0.2)",  # Mauve
+        "color-admonition-title": "rgb(203, 166, 247)",  # Mauve
+
+
+        "color-admonition-title-background--warning": "rgba(250, 179, 135, 0.2)",  # Peach
+        "color-admonition-title--warning": "#fab387",  # Peach
+
+        "color-admonition-title-background--note": "rgba(137, 220, 235, 0.2)",  # Sky
+        "color-admonition-title--note": "#89dceb",  # Sky
+
+        "color-admonition-title-background--tip": "rgba(166, 227, 161, 0.2)",  # Green
+        "color-admonition-title--tip": "#a6e3a1",  # Green
+
+        "color-admonition-title-background--seealso": "rgba(137, 180, 250, 0.2)",  # Blue
+        "color-admonition-title--seealso": "#89b4fa",  # Blue
+
+        "color-sidebar-search-background": "#181825",  # Mantle
+
+        "color-code-background": "#313244", # Base
+        "code-example-bg": "#313244", # Base
+
+    },
+    "sidebar_hide_name": False,
     #"navigation_with_keys": True,
     #'collapse_navigation': False,
     #'navigation_depth': 4,

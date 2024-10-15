@@ -2,7 +2,7 @@ import manim as m
 import numpy as np
 
 from manta.color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
-from manta.elements.axes_utils import AxesUtils
+from manta.components.axes_utils import AxesUtils
 from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 

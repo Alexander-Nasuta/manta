@@ -3,7 +3,7 @@ from typing import Sequence
 import manim as m
 from manim import config
 
-from manta.elements.shapes import ShapeUtils
+from manta.components.shapes import ShapeUtils
 
 
 class AxesUtils(ShapeUtils):
@@ -21,7 +21,7 @@ class AxesUtils(ShapeUtils):
     import numpy as np
 
     from color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
-    from elements.axes_utils import AxesUtils
+    from components.axes_utils import AxesUtils
     from slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 

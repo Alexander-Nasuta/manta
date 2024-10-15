@@ -11,6 +11,7 @@ Check out our interactive Jupyter environment which allows running the examples 
 
 ```{eval-rst}
 .. manim:: ExampleIntroSlide
+    :save_last_frame:
     
     from manta.slide_templates.minimal.minimal_intro_slide import MinimalIntroSlide
     
@@ -21,7 +22,6 @@ Check out our interactive Jupyter environment which allows running the examples 
 
         def construct(self):
             self.play(
-            
                 self.fade_in_slide()
             )
 

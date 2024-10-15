@@ -6,7 +6,7 @@
 # Manta Documentation
 
 For futher info check {doc}`usage`.
-RDFM {ref}`Installation`.
+% RDFM {ref}`Installation`.
 
 ```{warning}
 There is a versioning conflict with the Manim-Editor package.
@@ -58,6 +58,8 @@ This is a seealso.
 :maxdepth: 2
 
 usage
+slide-tempates/slide-templates
+components/components
 example-gallery
 themes
 notebooks/tutorial

@@ -1,4 +1,3 @@
-import manim as m
 
 from manta.color_theme.tokyo_night.tokyo_night import TokyoNight
 from manta.slide_templates.classic.classic_slide_template import ClassicSlideTemplate
@@ -26,4 +25,4 @@ class MyMinimalSlideTemplateExample(
 
 
 if __name__ == '__main__':
-    MyMinimalSlideTemplateExample.render_video_medium()
+    MyMinimalSlideTemplateExample.show_last_frame()

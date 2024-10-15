@@ -1,8 +1,8 @@
 import manim as m
 
 from manta.color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
-from manta.elements.neural_networks_utils import NeuralNetworkUtils
-from manta.elements.uml_utils import UmlUtils
+from manta.components.neural_networks_utils import NeuralNetworkUtils
+from manta.components.uml_utils import UmlUtils
 from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 
