@@ -1,4 +1,4 @@
-## QR Codes
+# QR Codes
 
 
 

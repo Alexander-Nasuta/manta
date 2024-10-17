@@ -1,4 +1,4 @@
-## Axes
+# Axes
 
 
 ```{eval-rst}

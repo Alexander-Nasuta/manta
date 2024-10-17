@@ -12,6 +12,7 @@ scene by importing them from the manta library and extending your scene with the
 axes
 gantt-charts
 go-board
+icons
 neural-network
 shapes
 text

@@ -1,4 +1,4 @@
-## Shapes
+# Shapes
 
 The 'ShapeUtils' class provides a set of useful shapes that can be used in your slides. 
 The shapes are designed to be used with the Manta slide templates and can be easily added to your scenes.

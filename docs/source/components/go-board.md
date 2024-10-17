@@ -1,4 +1,4 @@
-## Go Boards
+# Go Boards
 
 
 ```{eval-rst}

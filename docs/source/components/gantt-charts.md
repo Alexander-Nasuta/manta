@@ -1,4 +1,4 @@
-## Gantt Charts
+# Gantt Charts
 
 
 ```{eval-rst}
