@@ -1,4 +1,4 @@
-manta-manim-theme >= 0.7
+manta-manim-theme >= 0.7.1
 manim-editor
 pytest >= 8.3.3
 sphinx >= 8.0.2
@@ -11,3 +11,5 @@ twine >= 5.1
 sphinx-copybutton == 0.5.2
 gymnasium == 0.28.1
 segno >= 1.6.1
+manim-code-blocks >= 1.0.13
+manim-voiceover[all] >= 0.3.7

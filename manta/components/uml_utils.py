@@ -11,7 +11,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 
-from components.rectangle_utils import RectangleUtils
+from manta.components.rectangle_utils import RectangleUtils
 
 MethodMeta = namedtuple('MethodMeta', ['name', 'parameters_with_types', 'return_type'])
 
@@ -140,7 +140,7 @@ class UmlUtils(RectangleUtils):
         # Create a Panel with some content
         panel = Panel(
             class_attributes_rich_text + rich_seperator + class_methods_rich_text,
-            title=Text(f"{class_name}", style="bold orange"),
+            title=Text(f"{class_name}", style="bold cyan"),
             expand=False,
             border_style="blue",
             # width=1000  # Set a very large width

@@ -34,6 +34,9 @@ class BaseSlide(PaddingABC, m.Scene):
         # it causes troubles with slide index-objects (see IndexedSlide)
         m.Scene.play(self, *[m.FadeOut(obj) for obj in self.mobjects])
 
+    def remove_everything(self):
+        m.Scene.remove(self, *self.mobjects)
+
     def get_max_z_index(self) -> int:
         if not self.mobjects:
             return 0
@@ -97,6 +100,7 @@ class BaseSlide(PaddingABC, m.Scene):
         terminal_cmd = f"manim --disable_caching --save_sections -qk {file_path}"
         log.info(f"running command: \n\n\t{terminal_cmd}\n")
         os.system(f"{terminal_cmd}")
+
 
     @classmethod
     def show_last_frame(cls):

@@ -3,7 +3,7 @@ import manim as m
 from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 
-class MyTermTextExamplesScene(MinimalSlideTemplate):
+class MyBulletpointExampleScene(MinimalSlideTemplate):
 
     def construct(self):
 
@@ -40,4 +40,4 @@ class MyTermTextExamplesScene(MinimalSlideTemplate):
 
 
 if __name__ == '__main__':
-    MyTermTextExamplesScene.render_video_medium()
+    MyBulletpointExampleScene.render_video_medium()

@@ -3,7 +3,7 @@ import manim as m
 from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 
-class MyTermTextExamplesScene(MinimalSlideTemplate):
+class MySmallIconGalleryExampleScene(MinimalSlideTemplate):
 
     def construct(self):
 
@@ -19,7 +19,7 @@ class MyTermTextExamplesScene(MinimalSlideTemplate):
         no_cols = 5
         item_per_page = no_rows * no_cols
 
-        from components.nerdfont_icons import SYMBOLS_UNICODE
+        from manta.components.nerdfont_icons import SYMBOLS_UNICODE
 
         icon_key_list = list(SYMBOLS_UNICODE.keys())
 
@@ -61,4 +61,4 @@ class MyTermTextExamplesScene(MinimalSlideTemplate):
 
 
 if __name__ == '__main__':
-    MyTermTextExamplesScene.render_video_medium()
+    MySmallIconGalleryExampleScene.render_video_medium()

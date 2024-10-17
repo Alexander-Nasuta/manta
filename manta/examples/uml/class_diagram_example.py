@@ -33,32 +33,8 @@ class MyUmlClassDiagramScene(UmlUtils, NeuralNetworkUtils, MinimalSlideTemplate)
                 person_uml_class_diagram
             )
         )
-        self.wait(1.5)
+        self.wait(2.0)
 
-        self.play(
-            m.Transform(
-                person_uml_class_diagram,
-                self.uml_class_diagram(Person,
-                                       visibility_color=self.red,
-                                        fields_color=self.blue,
-                                       type_color=self.yellow,
-                                       parameters_color=self.green,
-                                       color_python_keyword=False,
-                                       type_t2c={"float": self.blue, "None": self.red}
-                                       ).scale(0.5)
-            )
-        )
-        self.wait(1.5)
-
-        # make sure to install gymnasium with `pip install gymnasium` before running this example
-        import gymnasium as gym
-
-        gym_class_uml_diagram = self.uml_class_diagram(gym.Env, class_name="gymnasium.Env").scale(0.5)
-
-        self.play(
-            m.ReplacementTransform(person_uml_class_diagram, gym_class_uml_diagram),
-        )
-        self.wait(1.5)
 
         self.fade_out_scene()
 

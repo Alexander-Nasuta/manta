@@ -104,7 +104,7 @@ class RectangleUtils(ShapeUtils, PaddingABC):
             return m.VGroup(rect, icon, separation_line).move_to(m.ORIGIN)
 
     def icon_textbox(self, text: str, icon: str | int = 'icons', direction='left',
-                     t2c=None, t2b=None, t2c_strs: list[str] = None,
+                     t2c=None, t2w=None, t2c_strs: list[str] = None,
                      t2w_strs: list[str] = None, t2c_color=None, **kwargs) -> m.VGroup:
         t2c_strs = [] if t2c_strs is None else t2c_strs
         t2w_strs = [] if t2w_strs is None else t2w_strs
@@ -115,17 +115,22 @@ class RectangleUtils(ShapeUtils, PaddingABC):
             t2c = {s: t2c_color for s in t2c_strs}
         else:
             t2c = {**{s: t2c_color for s in t2c_strs}, **t2c}
-        if t2b is None:
-            t2b = {s: m.BOLD for s in t2w_strs}
+        if t2w is None:
+            t2w = {s: m.BOLD for s in t2w_strs}
 
-        text_group = self.term_text(text)
+        text_group = self.term_text(text, t2c=t2c, t2w=t2w)
         return self.wrap_with_icon_and_rectangle(text_group, icon=icon, direction=direction, **kwargs)
 
     def icon_bulletpoints_textbox(self, bullet_points: list[str], bullet_point_kwargs: dict = None,
                                   icon: str | int = 'icons',
                                   direction='left',
+                                  bullet_icon_color=None,
+                                  bullet_icon:str = 'circle-small',
                                   t2c=None, t2w=None, t2c_strs: list[str] = None,
                                   t2w_strs: list[str] = None, t2c_color=None, **kwargs) -> m.VGroup:
+
+        if bullet_icon_color is None:
+            bullet_icon_color = self.yellow
         if bullet_point_kwargs is None:
             bullet_point_kwargs = {}
         t2c_strs = [] if t2c_strs is None else t2c_strs
@@ -143,6 +148,8 @@ class RectangleUtils(ShapeUtils, PaddingABC):
         bullet_point_params = {
             "t2c": t2c,
             "t2w": t2w,
+            "bullet_icon_color": bullet_icon_color,
+            "bullet_icon": bullet_icon,
             **bullet_point_kwargs
         }
 
@@ -183,6 +190,8 @@ class RectangleUtils(ShapeUtils, PaddingABC):
         titled_bullet_points = self.titled_bulletpoints(titled_bulletpoints, bullet_icon=bullet_icon,
                                                         v_buff=v_buff, h_buff=h_buff,
                                                         bullet_icon_kwargs=bullet_point_params,
-                                                        title_kwargs=title_kwargs)
+                                                        title_kwargs=title_kwargs,
+                                                        t2w=t2w, t2c=t2c
+                                                        )
 
         return self.wrap_with_icon_and_rectangle(titled_bullet_points, icon=icon, direction=direction, **kwargs)

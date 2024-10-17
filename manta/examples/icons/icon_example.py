@@ -25,8 +25,5 @@ class MyIconExamplesScene(MinimalSlideTemplate):
 
 
 
-
-
-
 if __name__ == '__main__':
     MyIconExamplesScene.render_video_medium()

@@ -14,7 +14,9 @@ gantt-charts
 go-board
 icons
 neural-network
+rectangleutils
 shapes
-text
 qr-codes
+text
+uml
 ```

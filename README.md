@@ -93,4 +93,12 @@ I assume that I will continue to develop Manta and add new features to it till a
 If you have any questions or feedback, feel free to contact me via [email](mailto:alexander.nasuta@wzl-iqs.rwth-aachen.de)
 
 ## Dev
+
+# build
+`poetry build`
+# upload on PyPi
+`twine check dist/**`
+`twine upload dist/**`
+
+# docs
 `sphinx-autobuild docs/source/ docs/build/html/`
