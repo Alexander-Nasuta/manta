@@ -34,7 +34,8 @@ class NeuralNetworkUtils(ShapeUtils):
         default_connection_arrow_kwargs = {
             "stroke_width": 3 * 0.5,
             "buff": merged_circle_kwargs["radius"],
-            "color": self.font_color
+            "color": self.font_color,
+            **arrow_kwargs
         }
 
         layers = []

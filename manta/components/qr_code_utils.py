@@ -2,8 +2,7 @@
 
 import manim as m
 import segno
-import numpy as np
-from components.rectangle_utils import RectangleUtils
+from manta.components.rectangle_utils import RectangleUtils
 
 
 class QrCodeUtils(RectangleUtils):

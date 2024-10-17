@@ -176,7 +176,9 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
             # append "█" to row_text_encoded till it has n_cols characters
             row_text_encoded += self._hidden_char * (n_cols - len(row_text_encoded))
 
-            mobj_row = self.term_text(row_text_encoded, t2c=t2c, **kwargs)
+            # term_text returns a VGroup with a single element
+            # [0] is used to get the text element
+            mobj_row = self.term_text(row_text_encoded, t2c=t2c, **kwargs)[0]
 
             row_str = lines[i]
 
@@ -190,7 +192,7 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
             arrangement_group.add(mobj_row)
 
         arrangement_group.arrange(m.DOWN, buff=v_buff)
-        return block_group
+        return arrangement_group
 
     def mono_block(self, t: str, **kwargs) -> m.VGroup:
         """
@@ -239,6 +241,7 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
 
     def bullet_point_list(self, bulletpoints: list[str], bullet_icon: str | int = 'circle-small', v_buff=0.25,
                           h_buff=0.125,
+                          bullet_icon_color=None,
                           bullet_icon_kwargs=None,
                           **kwargs) -> m.VGroup:
         """
@@ -253,6 +256,7 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
              Bullet Point 2
              Bullet Point 3
 
+        :param bullet_icon_color: the color of the bullet icon.
         :param bulletpoints: a list of strings that should be displayed as bullet points.
         :param bullet_icon:  the icon that should be used for the bullet point. This can be a string or an integer.
         :param v_buff: the vertical buffer between the bullet points.
@@ -261,14 +265,22 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
         :param kwargs: additional parameters for the term_text function.
         :return: a manim VGroup object.
         """
+        if bullet_icon_color is None:
+            bullet_icon_color = self.yellow
         if bullet_icon_kwargs is None:
             bullet_icon_kwargs = {}
+
 
         bullet_point_groups = []
         for bp in bulletpoints:
             bullet_point_text = self.term_text(bp, **kwargs)
 
-            bp_icon = self.symbol(symbol=bullet_icon, **bullet_icon_kwargs)
+            bullet_icon_default_kwargs = {
+                "color": bullet_icon_color,
+            }
+            bullet_icon_merged_kwargs = {**bullet_icon_default_kwargs, **bullet_icon_kwargs}
+
+            bp_icon = self.symbol(symbol=bullet_icon, **bullet_icon_merged_kwargs)
             bp_icon.next_to(bullet_point_text[0], m.LEFT, buff=h_buff)
 
             bullet_point_group = m.VGroup(bp_icon, bullet_point_text)
@@ -278,6 +290,7 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
 
     def titled_bulletpoints(self, titled_bulletpoints: list[tuple[str, list[str]]], bullet_icon: str = 'circle-small',
                             v_buff=0.25, h_buff=0.125,
+                            bullet_icon_color=None,
                             bullet_icon_kwargs: dict = None, title_kwargs: dict = None, **kwargs) -> m.VGroup:
         """
         A utility function to create a list of titled bullet points with a specific icon for the bullet point.
@@ -302,6 +315,8 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
         :param kwargs: additional parameters for the bullet_point_list function
         :return: a manim VGroup object.
         """
+        if bullet_icon_color is None:
+            bullet_icon_color = self.yellow
         if bullet_icon_kwargs is None:
             bullet_icon_kwargs = {}
         if title_kwargs is None:
@@ -312,7 +327,8 @@ class TextUtils(NerdfontIconUtils, ColorThemeABC, FontABC):
             title_text = self.term_text(title, **title_kwargs)
 
             bullet_point_group = self.bullet_point_list(bulletpoints, bullet_icon=bullet_icon, v_buff=v_buff,
-                                                        h_buff=h_buff, bullet_icon_kwargs=bullet_icon_kwargs, **kwargs)
+                                                        h_buff=h_buff, bullet_icon_kwargs=bullet_icon_kwargs,
+                                                        bullet_icon_color=bullet_icon_color,**kwargs)
 
             bullet_point_group.next_to(title_text, m.DOWN, buff=v_buff, aligned_edge=m.LEFT).shift(h_buff * m.RIGHT)
 

@@ -1,6 +1,6 @@
 import manim as m
 
-from components.axes_utils import AxesUtils
+from manta.components.axes_utils import AxesUtils
 
 
 class GanttUtils(AxesUtils):

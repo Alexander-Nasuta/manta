@@ -3,14 +3,14 @@ import manim as m
 from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 
-class MyShapesExamplesScene(MinimalSlideTemplate):
+class MyTextLineExamplesScene(MinimalSlideTemplate):
 
     def construct(self):
         self.play(
             self.set_title_row(
                 title="Text Utils",
                 seperator=": ",
-                subtitle="Text Line"
+                subtitle="text_line"
             )
         )
 
@@ -56,4 +56,4 @@ class MyShapesExamplesScene(MinimalSlideTemplate):
 
 
 if __name__ == '__main__':
-    MyShapesExamplesScene.render_video_medium()
+    MyTextLineExamplesScene.render_video_medium()

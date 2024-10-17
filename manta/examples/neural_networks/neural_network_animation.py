@@ -10,11 +10,18 @@ class MyNetworkAnimationScene(NeuralNetworkUtils, MinimalSlideTemplate):
     title_seperator_color = CatppuccinMochaTheme.magenta
 
     def construct(self):
-        nn = self.simple_neural_network()
+        nn = self.simple_neural_network(
+            # make the blue for more contrast
+            arrow_kwargs={"color": self.blue,},
+            neuron_circle_kwargs={"stroke_color": self.blue, "fill_color": self.green, "fill_opacity": 0.2},
+        )
+        nn.scale(2.0) # scale the neural network
 
         self.play(
             self.set_title_row(
-                title="Neural Network Animation",
+                title="NeuralNetworkUtils",
+                seperator=": ",
+                subtitle="simple_neural_network_forward_animation",
             ),
             m.FadeIn(nn),
         )
@@ -26,10 +33,22 @@ class MyNetworkAnimationScene(NeuralNetworkUtils, MinimalSlideTemplate):
         self.play(
             self.simple_neural_network_forward_animation(
                 nn,
-                color=self.cyan,
+                color=self.red,
                 run_time=2.5
             ),
         )
+
+        self.play(
+            self.simple_neural_network_forward_animation(
+                nn,
+                color=self.yellow,
+                run_time=2.5
+            ),
+        )
+        self.wait(0.25)
+
+
+        self.fade_out_scene()
 
 
 if __name__ == '__main__':

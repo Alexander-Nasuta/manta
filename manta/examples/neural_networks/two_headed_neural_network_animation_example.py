@@ -14,7 +14,9 @@ class MyTwoHeadedNeuralNetworkAnimationScene(NeuralNetworkUtils, MinimalSlideTem
 
         self.play(
             self.set_title_row(
-                title="Two Headed Neural Network Animation",
+                title="NeuralNetworkUtils",
+                seperator=": ",
+                subtitle="two_headed_neural_network_forward_animation",
             ),
             m.FadeIn(two_headed_nn),
         )

@@ -1,7 +1,7 @@
 import manim as m
 import numpy as np
 
-from components.rectangle_utils import RectangleUtils
+from manta.components.rectangle_utils import RectangleUtils
 
 
 class GoBoardUtils(RectangleUtils):

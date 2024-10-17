@@ -5,7 +5,7 @@ from manta.color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
 from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 
-class MyQrCodeScene(QrCodeUtils, MinimalSlideTemplate):
+class MySecondQrCodeScene(QrCodeUtils, MinimalSlideTemplate):
     subtitle_color = CatppuccinMochaTheme.yellow
     title_seperator_color = CatppuccinMochaTheme.magenta
 
@@ -79,4 +79,4 @@ class MyQrCodeScene(QrCodeUtils, MinimalSlideTemplate):
 
 
 if __name__ == '__main__':
-    MyQrCodeScene.render_video_medium()
+    MySecondQrCodeScene.render_video_medium()

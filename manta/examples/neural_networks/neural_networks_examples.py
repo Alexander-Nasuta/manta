@@ -5,14 +5,14 @@ from manta.components.neural_networks_utils import NeuralNetworkUtils
 from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
 
 
-class MyNeuralNetwork_example(NeuralNetworkUtils, MinimalSlideTemplate):
+class MyNeuralNetworkExample(NeuralNetworkUtils, MinimalSlideTemplate):
     subtitle_color = CatppuccinMochaTheme.yellow
     title_seperator_color = CatppuccinMochaTheme.magenta
 
     def construct(self):
         self.play(
             self.set_title_row(
-                title="Nerual Networks",
+                title="Neural Networks",
             )
         )
 
@@ -63,7 +63,7 @@ class MyNeuralNetwork_example(NeuralNetworkUtils, MinimalSlideTemplate):
 
         self.play(
             m.AnimationGroup(
-                self.change_subtitle("Two Headed Neural Network with different architecture"),
+                self.change_subtitle("Two Headed Neural Network"),
                 m.Transform(
                     example_nn,
                     self.two_headed_network(
@@ -98,4 +98,4 @@ class MyNeuralNetwork_example(NeuralNetworkUtils, MinimalSlideTemplate):
 
 
 if __name__ == '__main__':
-    MyNeuralNetwork_example.render_video_medium()
+    MyNeuralNetworkExample.render_video_medium()

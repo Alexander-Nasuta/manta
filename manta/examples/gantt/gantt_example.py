@@ -10,14 +10,6 @@ class MyGanttExampleScene(GanttUtils, MinimalSlideTemplate):
     title_seperator_color = CatppuccinMochaTheme.magenta
 
     def construct(self):
-        self.play(
-            self.set_title_row(
-                title="GanttUtils",
-                seperator=": ",
-                subtitle="gantt_chart_without_ticks",
-            ),
-        )
-
         gantt_data = [
             {'Task': 'Job 0', 'Start': 5, 'Finish': 16, 'Resource': 'Machine 0'},
             {'Task': 'Job 0', 'Start': 28, 'Finish': 31, 'Resource': 'Machine 1'},
@@ -29,9 +21,19 @@ class MyGanttExampleScene(GanttUtils, MinimalSlideTemplate):
             {'Task': 'Job 1', 'Start': 28, 'Finish': 32, 'Resource': 'Machine 3'}
         ]
 
-        gantt_char = self.gantt_chart_without_ticks(
+        gantt_chart = self.gantt_chart_without_ticks(
             width=4, height=2, data=gantt_data, n_machines=4, resource_naming="Machine"
         )
+
+        self.play(
+            self.set_title_row(
+                title="GanttUtils",
+                seperator=": ",
+                subtitle="gantt_chart_without_ticks",
+            ),
+            m.FadeIn(gantt_chart)
+        )
+
 
         gantt_data2 = [{'Task': 'Order 0', 'Start': 0, 'Finish': 27, 'Resource': 'Line 1'},
          {'Task': 'Order 1', 'Start': 16, 'Finish': 36, 'Resource': 'Line 0'},
@@ -62,7 +64,7 @@ class MyGanttExampleScene(GanttUtils, MinimalSlideTemplate):
 
         self.play(
             m.Transform(
-                gantt_char,
+                gantt_chart,
                 self.gantt_chart_without_ticks(
                     width=4,
                     height=2,

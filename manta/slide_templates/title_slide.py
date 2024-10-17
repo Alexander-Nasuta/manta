@@ -27,6 +27,7 @@ class TitleSlide(IosevkaTermSizing24, RectangleUtils, BaseColorSlide):
                       create_animation: m.Transform = None,
                       destroy_animation: m.Transform = None,
                       replace_animation: m.Transform = None,
+                      title_kwargs=None, seperator_kwargs=None, subtitle_kwargs=None,
                       **kwargs) -> m.AnimationGroup:
         # default values for transformations
         if create_animation is None:
@@ -35,6 +36,13 @@ class TitleSlide(IosevkaTermSizing24, RectangleUtils, BaseColorSlide):
             destroy_animation = m.FadeOut
         if replace_animation is None:
             replace_animation = m.Transform
+
+        if title_kwargs is None:
+            title_kwargs = {}
+        if seperator_kwargs is None:
+            seperator_kwargs = {}
+        if subtitle_kwargs is None:
+            subtitle_kwargs = {}
 
         # title, seperator, subtitle are have to single line strings
         if title is not None and len(title.split("\n")) > 1:
@@ -65,20 +73,33 @@ class TitleSlide(IosevkaTermSizing24, RectangleUtils, BaseColorSlide):
         if target_title_is_present:
             title_font_size = title_row_font_size
             title_font_color = self.title_color if self.title_color is not None else self.font_color
-            target_title_mobj = self.term_text(title, font_color=title_font_color, font_size=title_font_size)
+            target_title_mobj = self.term_text(
+                title,
+                font_color=title_font_color,
+                font_size=title_font_size,
+                **title_kwargs
+            )
             target_group.add(target_title_mobj)
 
         if target_seperator_is_present:
             seperator_font_color = self.title_seperator_color if self.title_seperator_color is not None else self.font_color
-            target_seperator_mobj = self.term_text(seperator, font_color=seperator_font_color,
-                                                   font_size=title_row_font_size)
+            target_seperator_mobj = self.term_text(
+                seperator,
+                font_color=seperator_font_color,
+                font_size=title_row_font_size,
+                **seperator_kwargs
+            )
             target_group.add(target_seperator_mobj)
 
         if target_subtitle_is_present:
             subtitle_font_size = title_row_font_size
             subtitle_font_color = self.subtitle_color if self.subtitle_color is not None else self.font_color
-            target_subtitle_mobj = self.term_text(subtitle, font_color=subtitle_font_color,
-                                                  font_size=subtitle_font_size)
+            target_subtitle_mobj = self.term_text(
+                subtitle,
+                font_color=subtitle_font_color,
+                font_size=subtitle_font_size,
+                **subtitle_kwargs
+            )
             target_group.add(target_subtitle_mobj)
 
         # alight the title row
