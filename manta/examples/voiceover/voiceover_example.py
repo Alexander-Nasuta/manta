@@ -35,6 +35,5 @@ class MyTermTextExamplesScene(MinimalSlideTemplate, VoiceoverScene):
 
 
 
-
 if __name__ == '__main__':
     MyTermTextExamplesScene.save_sections_without_cache()

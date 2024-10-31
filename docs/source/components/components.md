@@ -19,4 +19,5 @@ shapes
 qr-codes
 text
 uml
+voiceover
 ```

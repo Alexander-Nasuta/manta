@@ -22,7 +22,7 @@ copyright = '2024, Alexander Nasuta'
 author = 'Alexander Nasuta'
 
 # The full version, including alpha/beta/rc tags
-release = '0.7.1'
+release = '0.8.0'
 
 # -- General configuration ---------------------------------------------------
 

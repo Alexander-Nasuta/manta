@@ -1,6 +1,7 @@
-
+import manim as m
 
 from manim_editor import PresentationSectionType
+from numba.cuda import runtime
 
 from manta.slide_templates.base.base_slide import BaseSlide
 
@@ -36,9 +37,21 @@ class BaseIndexedSlide(BaseSlide):
         is_section = kwargs.pop("is_section", True)
 
         if is_section:
-            self.next_section(f"{self.get_section_name(is_keyframe=is_pdf_keyframes)}", type=section_type)
+            #self.next_section(f"{self.get_section_name(is_keyframe=is_pdf_keyframes)}", type=section_type)
+            self.next_slide(f"{self.get_section_name(is_keyframe=is_pdf_keyframes)}", type=section_type)
 
-        super().play(*args, **kwargs)
+        animation_group = m.AnimationGroup(*args)
+        group_runtime = animation_group.run_time
+
+        # somehow the animation for the slide stops one frame before
+        # the last frame animation
+        # to solve this issue, I added a dummy animation with a hidden circle as a workaround
+        hidden_circle = m.Circle().set_opacity(0).scale(0.00001)
+
+        super().play(
+            animation_group,
+            m.FadeOut(hidden_circle, run_time=group_runtime+0.1),
+            **kwargs)
 
     def play_without_section(
             self,

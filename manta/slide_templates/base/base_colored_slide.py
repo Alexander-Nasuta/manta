@@ -8,6 +8,10 @@ from manta.slide_templates.base.base_indexed_slide import BaseIndexedSlide
 
 class BaseColorSlide(CatppuccinMochaTheme, MantaPadding, BaseIndexedSlide):
 
+    @property
+    def _background_color(self) -> str:
+        return self.background_color # for manim slides
+
     def setup(self):
         super().setup()
 

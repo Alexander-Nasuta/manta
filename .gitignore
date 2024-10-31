@@ -9,6 +9,10 @@ media/*
 fonts/
 fonts/*
 dist_old/*
+slides/
+slides/*
+slides_assets/*
+slides_assets/
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template

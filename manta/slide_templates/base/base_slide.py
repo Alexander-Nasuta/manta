@@ -1,4 +1,6 @@
 import manim as m
+import manim_slides as ms
+
 import os
 import inspect
 from pathlib import Path
@@ -8,11 +10,15 @@ from manta.banner import banner
 from manta.logger import log
 
 
-class BaseSlide(PaddingABC, m.Scene):
+class BaseSlide(PaddingABC,
+                #m.Scene,
+                ms.Slide
+                ):
     print_banner_on_setup: bool = True
 
     scene_width: float = 14.22222222222222
     content_width: float
+
 
     def setup(self):
         super().setup()
@@ -119,6 +125,69 @@ class BaseSlide(PaddingABC, m.Scene):
         log.info(f"running command: \n\n\t{terminal_cmd}\n")
         import subprocess
 
+        try:
+            result = subprocess.run(terminal_cmd, shell=True, check=True, stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE)
+            print(result.stdout.decode())
+        except subprocess.CalledProcessError as e:
+            print(f"Command '{e.cmd}' returned non-zero exit status {e.returncode}.")
+            print(e.stderr.decode())
+            raise e
+
+
+
+    @classmethod
+    def manim_slides_html_medium(cls):
+        flags = f"-qm"
+        scene = cls.__name__
+        file_path = cls.get_file_path()
+
+        terminal_cmd = f"manim-slides render {file_path} {scene} {flags}"
+        log.info(f"running command: \n\n\t{terminal_cmd}\n")
+        import subprocess
+
+        try:
+            result = subprocess.run(terminal_cmd, shell=True, check=True, stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE)
+            print(result.stdout.decode())
+        except subprocess.CalledProcessError as e:
+            print(f"Command '{e.cmd}' returned non-zero exit status {e.returncode}.")
+            print(e.stderr.decode())
+            raise e
+
+
+        # run manim slides
+        terminal_cmd = f"manim-slides convert {scene} slides.html --open"
+        try:
+            result = subprocess.run(terminal_cmd, shell=True, check=True, stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE)
+            print(result.stdout.decode())
+        except subprocess.CalledProcessError as e:
+            print(f"Command '{e.cmd}' returned non-zero exit status {e.returncode}.")
+            print(e.stderr.decode())
+            raise e
+
+    @classmethod
+    def manim_slides_html_4k(cls):
+        flags = f"-qk"
+        scene = cls.__name__
+        file_path = cls.get_file_path()
+
+        terminal_cmd = f"manim-slides render {file_path} {scene} {flags}"
+        log.info(f"running command: \n\n\t{terminal_cmd}\n")
+        import subprocess
+
+        try:
+            result = subprocess.run(terminal_cmd, shell=True, check=True, stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE)
+            print(result.stdout.decode())
+        except subprocess.CalledProcessError as e:
+            print(f"Command '{e.cmd}' returned non-zero exit status {e.returncode}.")
+            print(e.stderr.decode())
+            raise e
+
+        # run manim slides
+        terminal_cmd = f"manim-slides convert {scene} slides.html --open"
         try:
             result = subprocess.run(terminal_cmd, shell=True, check=True, stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE)
