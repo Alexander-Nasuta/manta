@@ -105,7 +105,7 @@ class RectangleUtils(ShapeUtils, PaddingABC):
 
     def icon_textbox(self, text: str, icon: str | int = 'icons', direction='left',
                      t2c=None, t2w=None, t2c_strs: list[str] = None,
-                     t2w_strs: list[str] = None, t2c_color=None, **kwargs) -> m.VGroup:
+                     t2w_strs: list[str] = None, t2c_color=None, font_size=None, **kwargs) -> m.VGroup:
         t2c_strs = [] if t2c_strs is None else t2c_strs
         t2w_strs = [] if t2w_strs is None else t2w_strs
 
@@ -117,8 +117,10 @@ class RectangleUtils(ShapeUtils, PaddingABC):
             t2c = {**{s: t2c_color for s in t2c_strs}, **t2c}
         if t2w is None:
             t2w = {s: m.BOLD for s in t2w_strs}
+        if font_size is None:
+            font_size = self.font_size_normal
 
-        text_group = self.term_text(text, t2c=t2c, t2w=t2w)
+        text_group = self.term_text(text, t2c=t2c, t2w=t2w, font_size=font_size)
         return self.wrap_with_icon_and_rectangle(text_group, icon=icon, direction=direction, **kwargs)
 
     def icon_bulletpoints_textbox(self, bullet_points: list[str], bullet_point_kwargs: dict = None,
@@ -163,6 +165,8 @@ class RectangleUtils(ShapeUtils, PaddingABC):
                                         bullet_icon_kwargs: dict = None, title_kwargs: dict = None,
                                         icon: str | int = 'icons',
                                         direction='left',
+                                        font_size=None,
+                                        bullet_icon_color=None,
                                         t2c=None, t2w=None, t2c_strs: list[str] = None,
                                         t2w_strs: list[str] = None, t2c_color=None, **kwargs) -> m.VGroup:
         if bullet_icon_kwargs is None:
@@ -180,18 +184,56 @@ class RectangleUtils(ShapeUtils, PaddingABC):
             t2c = {**{s: t2c_color for s in t2c_strs}, **t2c}
         if t2w is None:
             t2w = {s: m.BOLD for s in t2w_strs}
+        if font_size is None:
+            font_size = self.font_size_normal
 
         bullet_point_params = {
             "t2c": t2c,
             "t2w": t2w,
-            **bullet_icon_kwargs
+            "font_size": font_size,
+            **bullet_icon_kwargs,
+        }
+        title_kwargs = {
+            "font_size": font_size,
         }
 
         titled_bullet_points = self.titled_bulletpoints(titled_bulletpoints, bullet_icon=bullet_icon,
                                                         v_buff=v_buff, h_buff=h_buff,
                                                         bullet_icon_kwargs=bullet_point_params,
+                                                        bullet_icon_color=bullet_icon_color,
                                                         title_kwargs=title_kwargs,
-                                                        t2w=t2w, t2c=t2c
+                                                        t2w=t2w, t2c=t2c,
+                                                        font_size=font_size
                                                         )
 
         return self.wrap_with_icon_and_rectangle(titled_bullet_points, icon=icon, direction=direction, **kwargs)
+
+    def title_rectangle(
+            self,
+            title: str,
+            width: float,
+            height: float,
+            title_scale=1.0,
+            title_font_size=None,
+            buff=None,
+            **kwargs):
+
+        if title_font_size is None:
+            title_font_size = self.font_size_normal
+        if buff is None:
+            buff = self.med_small_buff
+
+        rect = self.rounded_rectangle(width=width, height=height)
+        title_text = self.term_text(title, font_size = title_font_size).scale(title_scale)
+        title_text.next_to(rect.get_top(), m.DOWN, buff=buff)
+
+        # invisible text to align horizontal line
+        # letters as g, y, p ... then to mess up the alignment
+        invisible_text = self.term_text("0", opacity=0.0, font_size=title_font_size).scale(title_scale)
+        invisible_text.next_to(rect.get_top(), m.DOWN, buff=buff)
+
+        title_h_line = m.Line(rect.get_left(), rect.get_right(), stroke_width=1.0, color=self.outline_color)
+        title_h_line.next_to(invisible_text, m.DOWN, buff=buff)
+
+        return m.VGroup(rect, title_text, title_h_line)
+

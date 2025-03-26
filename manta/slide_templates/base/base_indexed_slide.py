@@ -37,8 +37,8 @@ class BaseIndexedSlide(BaseSlide):
         is_section = kwargs.pop("is_section", True)
 
         if is_section:
-            #self.next_section(f"{self.get_section_name(is_keyframe=is_pdf_keyframes)}", type=section_type)
-            self.next_slide(f"{self.get_section_name(is_keyframe=is_pdf_keyframes)}", type=section_type)
+            self.next_section(f"{self.get_section_name(is_keyframe=is_pdf_keyframes)}", type=section_type)
+            # self.next_slide(f"{self.get_section_name(is_keyframe=is_pdf_keyframes)}", type=section_type)
 
         animation_group = m.AnimationGroup(*args)
         group_runtime = animation_group.run_time

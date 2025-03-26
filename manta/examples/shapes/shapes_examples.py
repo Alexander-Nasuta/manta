@@ -33,7 +33,7 @@ class MyShapesExamplesScene(MinimalSlideTemplate):
         )
 
         self.play(
-            m.Transform(example_mobject, self.math_circle(math_text=r"\pi")),
+            m.Transform(example_mobject, self.icon_circle_svg(math_text=r"\pi")),
             self.change_subtitle("Math Circle")
         )
 

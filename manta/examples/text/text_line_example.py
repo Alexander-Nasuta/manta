@@ -40,9 +40,9 @@ class MyTextLineExamplesScene(MinimalSlideTemplate):
             m.MoveToTarget(segment3),
         )
 
-        circle1 = self.math_circle(math_text=r"s_1", color=self.magenta)
-        circle2 = self.math_circle(math_text=r"s_2", color=self.green)
-        circle3 = self.math_circle(math_text=r"s_3", color=self.cyan)
+        circle1 = self.icon_circle_svg(math_text=r"s_1", color=self.magenta)
+        circle2 = self.icon_circle_svg(math_text=r"s_2", color=self.green)
+        circle3 = self.icon_circle_svg(math_text=r"s_3", color=self.cyan)
 
         circle_group = (m.VGroup(circle1, circle2, circle3)
                         .arrange(m.RIGHT, buff=self.med_large_buff)

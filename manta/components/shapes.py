@@ -129,6 +129,92 @@ class ShapeUtils(TextUtils, ColorThemeABC, FontABC):
         circle_text = self.term_math_text(math_text, **text_params)
         return m.VGroup(circle, circle_text)
 
+
+    def icon_circle(self, circle_icon: str | int, radius=0.325, font_color=None, icon_kwargs=None, **kwargs) \
+            -> m.VGroup | m.Circle:
+        if icon_kwargs is None:
+            icon_kwargs = {}
+        default_icon_kwargs = {
+
+        }
+        icon_params = {**default_icon_kwargs, **icon_kwargs}
+
+        default_params = {
+            "radius": radius,
+            "stroke_width": 6,
+            "stroke_color": self.yellow,
+            "fill_color": self.background_color_bright,
+            "fill_opacity": 1.0
+        }
+        params = {**default_params, **kwargs}
+        circle = m.Circle(**params)
+
+        if circle_icon is None:
+            return circle
+
+        circle_icon = self.symbol(circle_icon, **icon_params)
+
+        return m.VGroup(circle, circle_icon)
+
+
+    def icon_circle_svg(self, circle_icon_svg_path: str, svg_color=None, radius=0.325, font_color=None, icon_kwargs=None, **kwargs) \
+            -> m.VGroup | m.Circle:
+        if icon_kwargs is None:
+            icon_kwargs = {}
+        default_icon_kwargs = {
+
+        }
+        icon_params = {**default_icon_kwargs, **icon_kwargs}
+
+        default_params = {
+            "radius": radius,
+            "stroke_width": 6,
+            "stroke_color": self.yellow,
+            "fill_color": self.background_color_bright,
+            "fill_opacity": 1.0
+        }
+        params = {**default_params, **kwargs}
+        circle = m.Circle(**params)
+
+        if circle_icon_svg_path is None:
+            return circle
+
+        circle_icon = m.SVGMobject(circle_icon_svg_path, **icon_params).scale_to_fit_height(circle.height*0.6325)
+
+        if svg_color is not None:
+            circle_icon.set_color(svg_color)
+
+        return m.VGroup(circle, circle_icon)
+
+    def icon_circle_npg(self, circle_icon_png_path: str, svg_color=None, radius=0.325, font_color=None, icon_kwargs=None, **kwargs) \
+            -> m.VGroup | m.Circle:
+        if icon_kwargs is None:
+            icon_kwargs = {}
+        default_icon_kwargs = {
+
+        }
+        icon_params = {**default_icon_kwargs, **icon_kwargs}
+
+        default_params = {
+            "radius": radius,
+            "stroke_width": 6,
+            "stroke_color": self.yellow,
+            "fill_color": self.background_color_bright,
+            "fill_opacity": 1.0
+        }
+        params = {**default_params, **kwargs}
+        circle = m.Circle(**params)
+
+        if circle_icon_png_path is None:
+            return circle
+
+        circle_icon = m.ImageMobject(circle_icon_png_path, **icon_params).scale_to_fit_height(circle.height*0.6325)
+
+        if svg_color is not None:
+            circle_icon.set_color(svg_color)
+
+        return m.Group(circle, circle_icon)
+
     def math_arrow(self, *args, color: str = None, **kwargs) -> m.Arrow:
 
         if color is None:
@@ -157,3 +243,4 @@ class ShapeUtils(TextUtils, ColorThemeABC, FontABC):
         }
         arrow_kwargs = {**arrow_default_kwargs, **kwargs}
         return m.Arrow(*args, **arrow_kwargs)
+

@@ -67,4 +67,5 @@ class MyTwoHeadedNeuralNetworkAnimationScene(NeuralNetworkUtils, MinimalSlideTem
 
 
 if __name__ == '__main__':
+    print(MyTwoHeadedNeuralNetworkAnimationScene.__bases__)
     MyTwoHeadedNeuralNetworkAnimationScene.render_video_medium()

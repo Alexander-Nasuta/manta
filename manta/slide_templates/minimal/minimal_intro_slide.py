@@ -28,13 +28,19 @@ class MinimalIntroSlide(IosevkaTermSizing24, LogoSlide):
     subtitle_shift: np.ndarray = np.array([0, 0, 0])
     subtitle_color = None
 
-    def fade_in_slide(self, lag_ratio=0.15, lag_ratio_background_img = 0.6) -> m.AnimationGroup:
+    def fade_in_slide(self, lag_ratio=0.15, lag_ratio_background_img = 0.6,
+                      title_kwargs: dict = None, subtitle_kwargs: dict = None) -> m.AnimationGroup:
         if self.background_picture is None:
             background_image = self.rectangle(width=self.scene_width, height=9, color=self.blue, fill_opacity=0.5)
         elif self.background_picture.endswith(".svg") or self.background_picture.endswith(".SVG"): # case: .svg format
             background_image = m.SVGMobject(self.background_picture)
         else:
             background_image = m.ImageMobject(self.background_picture)
+
+        if title_kwargs is None:
+            title_kwargs = {}
+        if subtitle_kwargs is None:
+            subtitle_kwargs = {}
 
         background_image.scale_to_fit_width(self.scene_width)
         background_image.to_edge(m.UP, buff=0)
@@ -53,7 +59,15 @@ class MinimalIntroSlide(IosevkaTermSizing24, LogoSlide):
         title_h_buff = self.med_large_buff if self.title_h_buff is None else self.title_h_buff
         title_font_color = self.font_color if self.title_color is None else self.title_color
 
-        title_mobject = self.term_text(self.title, font_size=self.font_size_LARGE, font_color=title_font_color)
+
+        title_mobject_default_kwargs = {
+            "t": self.title,
+            "font_size": self.font_size_LARGE,
+            "font_color": title_font_color,
+        }
+        merged_title_kwargs = {**title_mobject_default_kwargs, **title_kwargs}
+
+        title_mobject = self.term_text(**merged_title_kwargs)
         title_mobject.next_to(overlay_rect.get_top(), m.DOWN, buff=title_v_buff)
         title_mobject.to_edge(m.LEFT, buff=title_h_buff)
         title_mobject.shift(self.title_shift)
@@ -62,7 +76,14 @@ class MinimalIntroSlide(IosevkaTermSizing24, LogoSlide):
         subtitle_h_buff = self.med_large_buff if self.subtitle_h_buff is None else self.subtitle_h_buff
         subtitle_font_color = self.font_color if self.subtitle_color is None else self.subtitle_color
 
-        subtitle_mobject = self.term_text(self.subtitle, font_size=self.font_size_large, font_color=subtitle_font_color)
+        subtitle_kwargs_default = {
+            "t": self.subtitle,
+            "font_size": self.font_size_large,
+            "font_color": subtitle_font_color,
+        }
+        merged_subtitle_kwargs = {**subtitle_kwargs_default, **subtitle_kwargs}
+
+        subtitle_mobject = self.term_text(**merged_subtitle_kwargs)
         subtitle_mobject.next_to(title_mobject, m.DOWN, buff=subtitle_v_buff)
         subtitle_mobject.to_edge(m.LEFT, buff=subtitle_h_buff)
         subtitle_mobject.shift(self.subtitle_shift)

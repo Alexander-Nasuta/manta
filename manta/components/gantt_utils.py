@@ -22,7 +22,12 @@ class GanttUtils(AxesUtils):
                                   y_range=None,
                                   color_map: dict[str, m.ManimColor] = None, c_map="coolwarm",
                                   resource_naming="Machine",
-                                  n_machines: int = None, n_jobs: int = None) -> m.VGroup:
+                                  n_machines: int = None, n_jobs: int = None,
+                                  axis_config_kwargs=None) -> m.VGroup:
+
+        if axis_config_kwargs is None:
+            axis_config_kwargs = {}
+
         if n_jobs is None:
             n_jobs = 0
 
@@ -72,7 +77,7 @@ class GanttUtils(AxesUtils):
             y_range=[0, y_range, 1],
             x_length=width,
             y_length=height,
-            axis_config={"include_numbers": False, "tip_width": 0.125, "tip_height": 0.25},
+            axis_config={"include_numbers": False, "tip_width": 0.125, "tip_height": 0.25, **axis_config_kwargs},
         )
 
         if not len(data):

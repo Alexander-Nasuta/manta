@@ -1,5 +1,5 @@
 import manim as m
-import manim_slides as ms
+import manim_slides
 
 import os
 import inspect
@@ -11,8 +11,8 @@ from manta.logger import log
 
 
 class BaseSlide(PaddingABC,
-                #m.Scene,
-                ms.Slide
+                # manim_slides.Slide,
+                m.Scene
                 ):
     print_banner_on_setup: bool = True
 
@@ -54,7 +54,7 @@ class BaseSlide(PaddingABC,
 
     @classmethod
     def render_video_low(cls):
-        flags = "-l"
+        flags = "-pql"
         scene = cls.__name__
         file_path = cls.get_file_path()
 
@@ -188,6 +188,44 @@ class BaseSlide(PaddingABC,
 
         # run manim slides
         terminal_cmd = f"manim-slides convert {scene} slides.html --open"
+        try:
+            result = subprocess.run(terminal_cmd, shell=True, check=True, stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE)
+            print(result.stdout.decode())
+        except subprocess.CalledProcessError as e:
+            print(f"Command '{e.cmd}' returned non-zero exit status {e.returncode}.")
+            print(e.stderr.decode())
+            raise e
+
+    @classmethod
+    def manim_slides_4k(cls):
+        flags = f"-qk"
+        scene = cls.__name__
+        file_path = cls.get_file_path()
+
+        terminal_cmd = f"manim-slides render {file_path} {scene} {flags}"
+        log.info(f"running command: \n\n\t{terminal_cmd}\n")
+        import subprocess
+
+        try:
+            result = subprocess.run(terminal_cmd, shell=True, check=True, stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE)
+            print(result.stdout.decode())
+        except subprocess.CalledProcessError as e:
+            print(f"Command '{e.cmd}' returned non-zero exit status {e.returncode}.")
+            print(e.stderr.decode())
+            raise e
+
+    @classmethod
+    def manim_slides_m(cls):
+        flags = f"-qm"
+        scene = cls.__name__
+        file_path = cls.get_file_path()
+
+        terminal_cmd = f"manim-slides render {file_path} {scene} {flags}"
+        log.info(f"running command: \n\n\t{terminal_cmd}\n")
+        import subprocess
+
         try:
             result = subprocess.run(terminal_cmd, shell=True, check=True, stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE)

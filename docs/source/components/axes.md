@@ -1,6 +1,5 @@
 # Axes
 
-
 ```{eval-rst}
 .. manim:: MyAxesExampleScene
     

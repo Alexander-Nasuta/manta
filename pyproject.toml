@@ -3,7 +3,7 @@ name = "manta-manim-theme"
 packages = [
     { include = "manta" }
 ]
-version = "0.8.0"
+version = "0.8.1"
 description = ""
 authors = ["Alexander Nasuta <alexander.nasuta@ima.rwth-aachen.de>"]
 readme = "README.md"
@@ -13,7 +13,7 @@ include = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.11,<3.13"
+python = "^3.10,<3.13"
 typer = {extras = ["all"], version = "^0.12.5"}
 manim = "^0.18.1"
 rich = "^13.8.0"
@@ -22,6 +22,7 @@ segno = "^1.6.1"
 manim-code-blocks = "^1.0.13"
 manim-voiceover = {extras = ["azure", "gtts"], version = "^0.3.7"}
 manim-slides = "^5.1.9"
+numba = "^0.60.0"
 
 [tool.poetry.scripts]
 # install_skip_lock = "poetry install --skip-lock"

@@ -1,5 +1,6 @@
 import manim as m
 
+from color_theme.tokyo_night.tokyo_night import TokyoNight
 from manta.color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
 from manta.components.neural_networks_utils import NeuralNetworkUtils
 from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
@@ -17,6 +18,8 @@ class MyNeuralNetworkExample(NeuralNetworkUtils, MinimalSlideTemplate):
         )
 
         example_nn = self.simple_neural_network()
+
+
 
         self.play(
             m.AnimationGroup(
