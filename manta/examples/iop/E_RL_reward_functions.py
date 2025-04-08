@@ -48,7 +48,7 @@ def styled_text(t, **kwargs):
     params = {**default_params, **kwargs}
     return m.Text(t, **params)
 
-class IopRlRewardFunctions(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
+class EIopRlRewardFunctions(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
     # font_name = "IosevkaTermSlab Nerd Font Mono"
 
@@ -70,6 +70,12 @@ class IopRlRewardFunctions(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
     font_color = RwthTheme.rwth_blau_100
     font_color_secondary = RwthTheme.rwth_blau_75
+
+    logo_paths = [
+        "iop_logo.png"
+    ]
+    logo_height = 0.6
+    index_prefix = "H "
 
     def construct(self):
         self.play(
@@ -115,6 +121,7 @@ class IopRlRewardFunctions(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         trivial_rew_function_group.shift(m.LEFT * 3.25)
 
         self.play(
+            self.change_subtitle("Trivial Reward Function"),
             m.FadeIn(trivial_rew_function_group),
         )
 
@@ -142,7 +149,7 @@ class IopRlRewardFunctions(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
         class MyText(m.Text):
             def __init__(self, *tex_strings, **kwargs):
-                super().__init__(*tex_strings, font="Larabiefont", **kwargs)
+                super().__init__(*tex_strings, font="Iosevka Nerd Font", **kwargs)
 
         axes = m.Axes(
             x_range=[0, 41, 1],
@@ -1523,4 +1530,4 @@ class IopRlRewardFunctions(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
 
 if __name__ == '__main__':
-    IopRlRewardFunctions.render_video_low()
+    EIopRlRewardFunctions.save_sections_without_cache()

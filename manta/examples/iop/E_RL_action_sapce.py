@@ -48,9 +48,14 @@ def styled_text(t, **kwargs):
     params = {**default_params, **kwargs}
     return m.Text(t, **params)
 
-class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
+class EIopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
     # font_name = "IosevkaTermSlab Nerd Font Mono"
+    logo_paths = [
+        "iop_logo.png"
+    ]
+    logo_height = 0.6
+    index_prefix = "F "
 
     subtitle_color = RwthTheme.rwth_blau_75
     title_seperator_color = RwthTheme.rwth_blau_100
@@ -460,7 +465,7 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         t6_circle_mask.target.set_fill(mask_valid_circle_kwargs["fill_color"])
 
         self.play(
-            m.Circumscribe(t5_circle_mask),
+            m.Circumscribe(t5_circle_mask, color=RwthTheme.rwth_magenta_75),
             m.MoveToTarget(t5_circle),
             m.MoveToTarget(t5_circle_mask),
             m.MoveToTarget(t6_circle_mask),
@@ -481,7 +486,7 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         t2_circle_mask.target.set_fill(mask_valid_circle_kwargs["fill_color"])
 
         self.play(
-            m.Circumscribe(t1_circle_mask),
+            m.Circumscribe(t1_circle_mask, color=RwthTheme.rwth_magenta_75),
             m.MoveToTarget(t1_circle),
             m.Write(machine_edge_5_1),
             m.FadeIn(machine_edge_5_1_label),
@@ -501,7 +506,7 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         t7_circle_mask.target.set_fill(mask_valid_circle_kwargs["fill_color"])
 
         self.play(
-            m.Circumscribe(t6_circle_mask),
+            m.Circumscribe(t6_circle_mask, color=RwthTheme.rwth_magenta_75),
             m.MoveToTarget(t6_circle),
             m.FadeIn(j1_t2),
             m.MoveToTarget(t6_circle_mask),
@@ -519,7 +524,7 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         t3_circle_mask.target.set_fill(mask_valid_circle_kwargs["fill_color"])
 
         self.play(
-            m.Circumscribe(t2_circle_mask),
+            m.Circumscribe(t2_circle_mask , color=RwthTheme.rwth_magenta_75),
             m.MoveToTarget(t2_circle),
             m.FadeIn(j0_t2),
             m.MoveToTarget(t2_circle_mask),
@@ -542,7 +547,7 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         t8_circle_mask.target.set_fill(mask_valid_circle_kwargs["fill_color"])
 
         self.play(
-            m.Circumscribe(t7_circle_mask),
+            m.Circumscribe(t7_circle_mask , color=RwthTheme.rwth_magenta_75),
             m.MoveToTarget(t7_circle),
             m.Write(machine_edge_2_7),
             m.FadeIn(machine_edge_2_7_label),
@@ -566,7 +571,7 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         t4_circle_mask.target.set_fill(mask_valid_circle_kwargs["fill_color"])
 
         self.play(
-            m.Circumscribe(t3_circle_mask),
+            m.Circumscribe(t3_circle_mask , color=RwthTheme.rwth_magenta_75),
             m.MoveToTarget(t3_circle),
             m.Write(machine_edge_6_3),
             m.FadeIn(machine_edge_6_3_label),
@@ -583,7 +588,7 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         t4_circle_mask.target.set_fill(mask_invalid_circle_kwargs["fill_color"])
 
         self.play(
-            m.Circumscribe(t4_circle_mask),
+            m.Circumscribe(t4_circle_mask , color=RwthTheme.rwth_magenta_75),
             m.MoveToTarget(t4_circle),
             m.FadeIn(j0_t4),
             m.MoveToTarget(t4_circle_mask),
@@ -601,7 +606,7 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
             machine_edge_4_8.get_center() + m.LEFT * 0.25)
 
         self.play(
-            m.Circumscribe(t8_circle_mask),
+            m.Circumscribe(t8_circle_mask , color=RwthTheme.rwth_magenta_75),
             m.MoveToTarget(t8_circle),
             m.FadeIn(j1_t4),
             m.MoveToTarget(t8_circle_mask),
@@ -685,10 +690,10 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
 
         self.play(
-            m.Indicate(action_space_job[2], color=C.YELLOW),
-            m.Circumscribe(m.VGroup(t1_group, t4_group), color=C.YELLOW, buff=0.25),
-            m.Indicate(action_space_job[4], color=C.PINK),
-            m.Circumscribe(m.VGroup(t5_group, t8_group), color=C.PINK, buff=0.25),
+            m.Indicate(action_space_job[2], color=RwthTheme.rwth_lila_75),
+            m.Circumscribe(m.VGroup(t1_group, t4_group), color=RwthTheme.rwth_lila_75, buff=0.25),
+            m.Indicate(action_space_job[4], color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(m.VGroup(t5_group, t8_group), color=RwthTheme.rwth_magenta_75, buff=0.25),
         )
 
 
@@ -737,9 +742,9 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         action_space_tasks[12].target.set_color(C.GREEN_DARK)
 
         self.play(
-            m.Circumscribe(t5_circle_mask),
-            m.Circumscribe(action_space_tasks[10]),
-            m.Circumscribe(action_space_job[4]),
+            m.Circumscribe(t5_circle_mask, color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_tasks[10], color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_job[4], color=RwthTheme.rwth_magenta_75),
 
             m.MoveToTarget(action_space_tasks[10]),
             m.MoveToTarget(action_space_tasks[12]),
@@ -770,9 +775,9 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         action_space_tasks[4].target.set_color(C.GREEN_DARK)
 
         self.play(
-            m.Circumscribe(t1_circle_mask),
-            m.Circumscribe(action_space_tasks[2]),
-            m.Circumscribe(action_space_job[2]),
+            m.Circumscribe(t1_circle_mask, color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_tasks[2], color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_job[2], color=RwthTheme.rwth_magenta_75),
 
             m.MoveToTarget(action_space_tasks[2]),
             m.MoveToTarget(action_space_tasks[4]),
@@ -801,9 +806,9 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         action_space_tasks[14].target.set_color(C.GREEN_DARK)
 
         self.play(
-            m.Circumscribe(t6_circle_mask),
-            m.Circumscribe(action_space_tasks[12]),
-            m.Circumscribe(action_space_job[4]),
+            m.Circumscribe(t6_circle_mask, color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_tasks[12], color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_job[4], color=RwthTheme.rwth_magenta_75),
 
             m.MoveToTarget(action_space_tasks[12]),
             m.MoveToTarget(action_space_tasks[14]),
@@ -829,9 +834,9 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         action_space_tasks[6].target.set_color(C.GREEN_DARK)
 
         self.play(
-            m.Circumscribe(t2_circle_mask),
-            m.Circumscribe(action_space_tasks[4]),
-            m.Circumscribe(action_space_job[2]),
+            m.Circumscribe(t2_circle_mask, color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_tasks[4], color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_job[2], color=RwthTheme.rwth_magenta_75),
 
             m.MoveToTarget(action_space_tasks[4]),
             m.MoveToTarget(action_space_tasks[6]),
@@ -863,9 +868,9 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         action_space_tasks[16].target.set_color(C.GREEN_DARK)
 
         self.play(
-            m.Circumscribe(t7_circle_mask),
-            m.Circumscribe(action_space_tasks[14]),
-            m.Circumscribe(action_space_job[4]),
+            m.Circumscribe(t7_circle_mask, color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_tasks[14] , color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_job[4], color=RwthTheme.rwth_magenta_75),
 
             m.MoveToTarget(action_space_tasks[14]),
             m.MoveToTarget(action_space_tasks[16]),
@@ -898,9 +903,9 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         action_space_tasks[8].target.set_color(C.GREEN_DARK)
 
         self.play(
-            m.Circumscribe(t3_circle_mask),
-            m.Circumscribe(action_space_tasks[6]),
-            m.Circumscribe(action_space_job[2]),
+            m.Circumscribe(t3_circle_mask , color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_tasks[6] , color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_job[2] , color=RwthTheme.rwth_magenta_75),
 
             m.MoveToTarget(action_space_tasks[6]),
             m.MoveToTarget(action_space_tasks[8]),
@@ -926,9 +931,9 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         action_space_job[2].target.set_color(C.PINK)
 
         self.play(
-            m.Circumscribe(t4_circle_mask),
-            m.Circumscribe(action_space_tasks[8]),
-            m.Circumscribe(action_space_job[2]),
+            m.Circumscribe(t4_circle_mask , color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_tasks[8] , color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_job[2] , color=RwthTheme.rwth_magenta_75),
 
             m.MoveToTarget(action_space_tasks[8]),
             m.MoveToTarget(action_space_job[2]),
@@ -955,9 +960,9 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         action_space_job[4].target.set_color(C.PINK)
 
         self.play(
-            m.Circumscribe(t8_circle_mask),
-            m.Circumscribe(action_space_tasks[16]),
-            m.Circumscribe(action_space_job[4]),
+            m.Circumscribe(t8_circle_mask, color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_tasks[16], color=RwthTheme.rwth_magenta_75),
+            m.Circumscribe(action_space_job[4], color=RwthTheme.rwth_magenta_75),
 
             m.MoveToTarget(action_space_tasks[16]),
             m.MoveToTarget(action_space_job[4]),
@@ -975,4 +980,4 @@ class IopRlActionSpace(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
 
 if __name__ == '__main__':
-    IopRlActionSpace.render_video_low()
+    EIopRlActionSpace.save_sections_without_cache()

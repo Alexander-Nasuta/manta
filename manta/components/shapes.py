@@ -40,7 +40,7 @@ class ShapeUtils(TextUtils, ColorThemeABC, FontABC):
     rectangle_default_fill_color = None
     rectangle_default_stroke_color = None
 
-    def rounded_rectangle(self, width, height, corner_radius=0.1, **kwargs):
+    def rounded_rectangle(self, width, height, corner_radius=0.125, **kwargs):
         """
         Creates a rounded rectangle with the specified dimensions and corner radius.
 
@@ -50,6 +50,16 @@ class ShapeUtils(TextUtils, ColorThemeABC, FontABC):
         :param kwargs:
         :return:
         """
+        params = {
+            "corner_radius": corner_radius,
+            "height": height,
+            "width": width,
+            "fill_color": self.background_color_bright if self.rectangle_default_fill_color is None else self.rectangle_default_fill_color,
+            "fill_opacity": 1.0,
+            "stroke_color": self.outline_color if self.rectangle_default_stroke_color is None else self.rectangle_default_stroke_color,
+            "stroke_width": 1.0
+        } | kwargs
+        return m.RoundedRectangle(**params)
         return m.RoundedRectangle(
             corner_radius=0.125,
             height=height,

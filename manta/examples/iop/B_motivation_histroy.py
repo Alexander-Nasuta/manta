@@ -9,9 +9,15 @@ from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTem
 from slide_templates.rwth.rwth_slide_template import RwthSlideTemplate
 
 
-class ExposeMotivation(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
+class BMotivationHistory(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
     # font_name = "IosevkaTermSlab Nerd Font Mono"
+
+    logo_paths = [
+        "iop_logo.png"
+    ]
+    logo_height = 0.6
+    index_prefix = "A "
 
     subtitle_color = RwthTheme.rwth_blau_75
     title_seperator_color = RwthTheme.rwth_blau_100
@@ -697,9 +703,10 @@ class ExposeMotivation(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
             m.ReplacementTransform(online_bullet_point_rect, summary_box2),
         )
 
-        self.wait(0.1)
-        self.fade_out_scene()
+        self.play(
+            self.overlay_scene()
+        )
 
 
 if __name__ == '__main__':
-    ExposeMotivation.render_video_medium()
+    BMotivationHistory.save_sections_without_cache()

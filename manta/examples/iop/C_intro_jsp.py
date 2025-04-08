@@ -9,9 +9,15 @@ from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTem
 from slide_templates.rwth.rwth_slide_template import RwthSlideTemplate
 
 
-class JspIntro(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
+class CJspIntro(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
     # font_name = "IosevkaTermSlab Nerd Font Mono"
+
+    logo_paths = [
+        "iop_logo.png"
+    ]
+    logo_height = 0.6
+    index_prefix = "B "
 
     subtitle_color = RwthTheme.rwth_blau_75
     title_seperator_color = RwthTheme.rwth_blau_100
@@ -757,4 +763,4 @@ class JspIntro(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
 
 if __name__ == '__main__':
-    JspIntro.render_video_medium()
+    CJspIntro.save_sections_without_cache()

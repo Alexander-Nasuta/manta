@@ -40,7 +40,7 @@ buff_Huge = 0.35
 def text(t, **kwargs):
     color = kwargs.pop("font_color", None)  # for consistency with math_text
     default_params = {
-        "font": "IosevkaTermSlab Nerd Font Mono",
+        "font": "Iosevka Nerd Font",
         "color": RwthTheme.rwth_blau_75 if color is None else color,
     }
     params = {**default_params, **kwargs}

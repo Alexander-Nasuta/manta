@@ -6,12 +6,12 @@ from manta.slide_templates.minimal.minimal_intro_slide import MinimalIntroSlide
 
 import manta.docbuild.image_path_utils as paths
 
-class IopIntro(RwthTheme, MinimalIntroSlide):
+class GIopOutro(RwthTheme, MinimalIntroSlide):
 
 
-    title = "Efficient Approaches to Job Shop Scheduling"
+    title = "Thank you for your attention!"
     title_color = RwthTheme.rwth_blau_100
-    subtitle = "Theory and Practice\n \n Alexander Nasuta & Calvin Kuhn"
+    subtitle = "Alexander Nasuta & Calvin Kuhn"
     subtitle_color = RwthTheme.rwth_blau_75
 
     # font_name = "SauceCodePro Nerd Font Mono"
@@ -42,4 +42,4 @@ class IopIntro(RwthTheme, MinimalIntroSlide):
         self.play(self.overlay_scene())
 
 if __name__ == '__main__':
-    IopIntro.save_sections_without_cache()
+    GIopOutro.save_sections_without_cache()

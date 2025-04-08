@@ -54,9 +54,15 @@ def styled_text(t, **kwargs):
     params = {**default_params, **kwargs}
     return m.Text(t, **params)
 
-class IopMCTSVanilla(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
+class FIopMCTSVanilla(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
     # font_name = "IosevkaTermSlab Nerd Font Mono"
+
+    logo_paths = [
+        "iop_logo.png"
+    ]
+    logo_height = 0.6
+    index_prefix = "I "
 
     subtitle_color = RwthTheme.rwth_blau_75
     title_seperator_color = RwthTheme.rwth_blau_100
@@ -79,8 +85,10 @@ class IopMCTSVanilla(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
     def construct(self):
         self.play(
-            self.change_title(
+            self.set_title_row(
                 title="MCTS Approach",
+                seperator=": ",
+                subtitle="Vanilla MCTS",
             ),
             self.add_logos(),
             self.add_seperator_line_top(),
@@ -1595,6 +1603,7 @@ class IopMCTSVanilla(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
 
         self.play(
+            self.change_subtitle("Neural Monte Carlo Tree Search"),
             m.MoveToTarget(mcts_s2),
             *[m.FadeOut(elem) for elem in mcts_fade_out_elems if self.is_in_scene(elem)],
         )
@@ -1860,6 +1869,11 @@ class IopMCTSVanilla(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
                 ] if self.is_in_scene(e)
             ],
             m.FadeIn(dark_grey_rect),
+            self.set_title_row(
+                title="Summary",
+                seperator=None,
+                subtitle=None,
+            )
         )
 
         conclusion_buff = TE.buff_normal
@@ -1914,4 +1928,4 @@ class IopMCTSVanilla(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
 
 if __name__ == '__main__':
-    IopMCTSVanilla.render_video_low()
+    FIopMCTSVanilla.save_sections_without_cache()

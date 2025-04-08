@@ -39,6 +39,12 @@ class C:
     GREEN_DARK: str = RwthTheme.rwth_gruen_100
     GREEN_LIGHT: str = RwthTheme.rwth_gruen_50
 
+    logo_paths = [
+        "iop_logo.png"
+    ]
+    logo_height = 0.6
+    index_prefix = "D "
+
 def styled_text(t, **kwargs):
     default_params = {
         "font": "Iosevka Nerd Font",
@@ -47,9 +53,15 @@ def styled_text(t, **kwargs):
     params = {**default_params, **kwargs}
     return m.Text(t, **params)
 
-class IopGraphModellingIntro(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
+class C_IopGraphModellingIntro(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
     # font_name = "IosevkaTermSlab Nerd Font Mono"
+
+    logo_paths = [
+        "iop_logo.png"
+    ]
+    logo_height = 0.6
+    index_prefix = "C "
 
     subtitle_color = RwthTheme.rwth_blau_75
     title_seperator_color = RwthTheme.rwth_blau_100
@@ -684,7 +696,7 @@ class IopGraphModellingIntro(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate
         # adding axes
         class MyText(m.Text):
             def __init__(self, *tex_strings, **kwargs):
-                super().__init__(*tex_strings, font="Larabiefont", **kwargs)
+                super().__init__(*tex_strings, font="Iosevka Nerd Font", **kwargs)
 
         axes = m.Axes(
             x_range=[0, 41, 1],
@@ -1291,4 +1303,4 @@ class IopGraphModellingIntro(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate
 
 
 if __name__ == '__main__':
-    IopGraphModellingIntro.render_video_low()
+    C_IopGraphModellingIntro.save_sections_without_cache()

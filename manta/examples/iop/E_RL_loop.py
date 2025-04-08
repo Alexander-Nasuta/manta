@@ -47,7 +47,7 @@ def styled_text(t, **kwargs):
     params = {**default_params, **kwargs}
     return m.Text(t, **params)
 
-class IopRlLoop(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
+class EIopRlLoop(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
     # font_name = "IosevkaTermSlab Nerd Font Mono"
 
@@ -69,6 +69,12 @@ class IopRlLoop(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
     font_color = RwthTheme.rwth_blau_100
     font_color_secondary = RwthTheme.rwth_blau_75
+
+    logo_paths = [
+        "iop_logo.png"
+    ]
+    logo_height = 0.6
+    index_prefix = "D "
 
     def construct(self):
         self.play(
@@ -191,6 +197,29 @@ class IopRlLoop(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
             m.DrawBorderThenFill(gant_chart_full),
         )
 
+        env_big_rect = m.RoundedRectangle(
+            corner_radius=0.125,
+            width=6,
+            height=4.0,
+            fill_color=self.background_color,
+            fill_opacity=1.0,
+            stroke_color=C.GREY_OUTLINE,
+            stroke_width=1.0
+        )
+        a_big_rect = m.RoundedRectangle(
+            corner_radius=0.125,
+            width=3,
+            height=1.5,
+            fill_color=self.background_color,
+            fill_opacity=1.0,
+            stroke_color=C.GREY_OUTLINE,
+            stroke_width=1.0
+        )
+        a_big_rect.set_opacity(0.0)
+        env_big_rect.set_opacity(0.0)
+
+        self.add(env_big_rect,a_big_rect)
+
         env_rect = m.RoundedRectangle(
             corner_radius=0.125,
             width=4,
@@ -202,20 +231,12 @@ class IopRlLoop(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         )
         env_text = styled_text("Environment", color=C.DEFAULT_FONT).scale(0.75)
         env_group = m.VGroup(env_rect, env_text)
+        # env_group.z_index += 100
 
         env_group.move_to([0, -1.75, 0])
 
 
-        env_big_rect = m.RoundedRectangle(
-            corner_radius=0.125,
-            width=6,
-            height=4.0,
-            fill_color=self.background_color,
-            fill_opacity=1.0,
-            stroke_color=C.GREY_OUTLINE,
-            stroke_width=1.0
-        )
-        env_big_rect.z_index = env_group.z_index - 1
+        #env_big_rect.z_index = env_group.z_index - 1
         env_big_rect.move_to([0, -1.75, 0])
 
         env_big_rect_title = styled_text("Environment", color=C.DEFAULT_FONT).scale(0.5)
@@ -374,24 +395,17 @@ class IopRlLoop(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
             m.Transform(gant_chart_full, env_group, replace_mobject_with_target_in_scene=True),
         )
 
+        env_big_rect.generate_target()
+        env_big_rect.target.set_opacity(1.0)
         self.play(
-            m.Write(env_big_rect),
+            m.MoveToTarget(env_big_rect),
             m.Transform(env_rect, env_big_rect_title_rectangle, replace_mobject_with_target_in_scene=True),
             m.Transform(env_text, env_big_rect_title, replace_mobject_with_target_in_scene=True),
             m.FadeIn(graph),
             m.FadeIn(small_axes),
         )
 
-        a_big_rect = m.RoundedRectangle(
-            corner_radius=0.125,
-            width=3,
-            height=1.5,
-            fill_color=self.background_color,
-            fill_opacity=1.0,
-            stroke_color=C.GREY_OUTLINE,
-            stroke_width=1.0
-        )
-        a_big_rect.z_index = a_group.z_index - 1
+
         a_big_rect.move_to([0, 2, 0])
 
         a_big_rect_title = styled_text("Agent", color=C.DEFAULT_FONT).scale(0.5)
@@ -517,8 +531,11 @@ class IopRlLoop(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         ).scale(0.75)
         temp_a_group.add(a_group)
 
+        a_big_rect.generate_target()
+        a_big_rect.target.set_opacity(1.0)
+
         self.play(
-            m.Write(a_big_rect),
+            m.MoveToTarget(a_big_rect),
             m.Transform(a_rect, a_big_rect_title_rectangle, replace_mobject_with_target_in_scene=True),
             m.Transform(a_text, a_big_rect_title, replace_mobject_with_target_in_scene=True),
             m.FadeIn(neural_network),
@@ -614,7 +631,7 @@ class IopRlLoop(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
         j2_t1_small_target = j2_t1_small.copy()
 
         j2_t1_small.next_to(action_label, m.DOWN, buff=0.25)
-        j2_t1_small_target.z_index = small_axes.z_index - 1
+        #j2_t1_small_target.z_index = small_axes.z_index - 1
 
         nn_time_width = 0.85 * 2.0
         nn_runtime = 0.2 * 1.5
@@ -642,6 +659,11 @@ class IopRlLoop(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
         t5_circle_copy = t5_circle.copy()
         t5_circle_copy.set_fill(C.GREEN_LIGHT, opacity=0.0)
+
+        tempt5 = t5_text.copy()
+        tempt5.z_index = 300
+
+        self.add(tempt5)
 
         self.play(
             m.MoveToTarget(t5_circle),
@@ -1280,10 +1302,14 @@ class IopRlLoop(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
             m.Indicate(reward_label, color=C.YELLOW, scale_factor=1.2),
         )
 
+        self.play(
+            self.overlay_scene()
+        )
+
 
 
 
 
 
 if __name__ == '__main__':
-    IopRlLoop.render_video_low()
+    EIopRlLoop.save_sections_without_cache()

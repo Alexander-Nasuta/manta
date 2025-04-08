@@ -47,7 +47,12 @@ def styled_text(t, **kwargs):
     params = {**default_params, **kwargs}
     return m.Text(t, **params)
 
-class IopRlState(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
+class EIopRlState(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
+    logo_paths = [
+        "iop_logo.png"
+    ]
+    logo_height = 0.6
+    index_prefix = "E "
 
     # font_name = "IosevkaTermSlab Nerd Font Mono"
 
@@ -399,7 +404,7 @@ class IopRlState(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
             m.ReplacementTransform(big_graph, graph),
         )
 
-        header_color = RwthTheme.rwth_orange_75
+        header_color = RwthTheme.rwth_lila_75
         zero_color = RwthTheme.rwth_schwarz_50
         non_zero_color = RwthTheme.rwth_blau_75
 
@@ -1166,4 +1171,4 @@ class IopRlState(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
 
 if __name__ == '__main__':
-    IopRlState.render_video_low()
+    EIopRlState.render_video_low()

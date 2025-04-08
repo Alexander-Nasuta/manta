@@ -47,7 +47,7 @@ def styled_text(t, **kwargs):
     params = {**default_params, **kwargs}
     return m.Text(t, **params)
 
-class IopLeftShift(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
+class EIopLeftShift(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
     # font_name = "IosevkaTermSlab Nerd Font Mono"
 
@@ -69,6 +69,12 @@ class IopLeftShift(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
 
     font_color = RwthTheme.rwth_blau_100
     font_color_secondary = RwthTheme.rwth_blau_75
+
+    logo_paths = [
+        "iop_logo.png"
+    ]
+    logo_height = 0.6
+    index_prefix = "G "
 
     def construct(self):
         self.play(
@@ -438,9 +444,13 @@ class IopLeftShift(RwthTheme, AxesUtils, GanttUtils, RwthSlideTemplate):
             m.Transform(machine_edge_5_7, machine_edge_7_5, replace_mobject_with_target_in_scene=True),
         )
 
+        self.play(
+            self.overlay_scene()
+        )
+
 
 
 
 
 if __name__ == '__main__':
-    IopLeftShift.render_video_low()
+    EIopLeftShift.save_sections_without_cache()
