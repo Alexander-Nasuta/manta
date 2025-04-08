@@ -11,4 +11,5 @@ sphinx-copybutton == 0.5.2
 gymnasium == 0.28.1
 segno >= 1.6.1
 manim-code-blocks >= 1.0.13
+manim-voiceover[all] >= 0.3.7
 numba
