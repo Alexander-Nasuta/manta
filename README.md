@@ -38,31 +38,53 @@ It features the following components:
 
 ## Quickstart
 
-For the default Manta Theme, the following Nerd Fonts are required to be installed on your system:
-- [IosevkaTermSlab](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/IosevkaTermSlab.zip)
-- [Symbols Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/NerdFontsSymbolsOnly.zip)
-
-You can find the installation instructions for the Nerd Fonts [here](https://www.nerdfonts.com/)
-
 First install manta via pip:
 ```shell
 pip install manta-manim-theme
 ```
 Then update manim to the latest version:
 ```shell
-pip install -U manim
-```
-you might see the following error:
-
-```
-ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
-manim-editor 0.3.8 requires manim<0.14.0,>=0.13.1, but you have manim 0.18.1 which is incompatible.
+pip install manim-editor --no-deps
 ```
 
-Manta uses [Manim-Editor](https://docs.editor.manim.community/en/stable/) for creating slides.
-Unfortunately the Manim-Editor dependency is a bit dated and states that it is only compatible with Manim version up to
-0.13.1. However, Manta is actually required to use a more recent version of Manim (the initial manta package was developed with the manim version 0.18.1).
+Note: Manim-Editor dependencies on Manim is outdated (As of 2025-04).
 
+I recommend using version 0.18.1 of Manim and the latest version of Manim-Editor.
+
+```shell
+pip install manim-editor --no-deps
+```
+
+Here is a minimal example of how to use Manta:
+```python
+from manta.slide_templates.minimal.minimal_intro_slide import MinimalIntroSlide
+
+
+class MyIntroSlide(MinimalIntroSlide): # make sure to inherit from one of the slide templates
+    
+    # have a look at the source code of MinimalIntroSlide for customization options (font size, colors, etc.)
+    title = "Manta"
+    subtitle = "A Framework for creating Presentation Slides \n with Manim and Python"
+
+    def construct(self):
+        self.play(
+            self.fade_in_slide()
+        )
+        self.wait(2)
+
+        self.fade_out_scene()
+
+
+if __name__ == '__main__':
+    # instead of using the command line to render the video (like in Manim)
+    # you can use the following method to render the video
+    # there is a variety of methods to render the videos 
+    # in my opinion this more convenient than using the command line
+    MyIntroSlide.render_video_medium() 
+
+```
+
+A brief presentation showcasing Mantas Key-Features is available in its documentation 
 
 ## Documentation
 
@@ -73,32 +95,52 @@ Here are also other resources that might be helpful:
 - [Manim-Editor Documentation](https://docs.editor.manim.community/en/stable/)
 - [Manim-Community Discord](https://discord.gg/mMRrZQg)
 
-## Contributing
-
-If you want to contribute to Manta, you can do so by creating a pull request. 
-If you add new features, please make sure to add minimal test and a example for them in the docs.
-Currently there is no automated testing for Manta, I am also unsure if there is a feasible way to test the output of the slides.
 
 ## State of the Project
 
-I am using Manta myself to create slides for my presentations, that need to be especially fancy. This will not change in the near future. 
+I am using Manta myself to create slides for my presentations, that need to be especially fancy. 
+This will not change in the near future. 
 I assume that I will continue to develop Manta and add new features to it till at least the end of 2027.
-
-## Roadmap
-- [ ] Add automated testing with tox and pytest
-- [ ] Fix Manim-Editor version compatibility
 
 ## Contact
 
 If you have any questions or feedback, feel free to contact me via [email](mailto:alexander.nasuta@wzl-iqs.rwth-aachen.de)
 
-## Dev
+## Development
+
+### Building and Publishing the Project to PyPi
+
+In order to publish the project to PyPi, the project needs to be built and then uploaded to PyPi.
+
+To build the project, run the following command:
 
 # build
 `poetry build`
-# upload on PyPi
-`twine check dist/**`
-`twine upload dist/**`
 
-# docs
-`sphinx-autobuild docs/source/ docs/build/html/`
+It is considered good practice use the tool `twine` for checking the build and uploading the project to PyPi.
+By default the build command creates a `dist` folder with the built project files.
+To check all the files in the `dist` folder, run the following command:
+
+```shell
+twine check dist/**
+```
+
+If the check is successful, you can upload the project to PyPi with the following command:
+
+```shell
+twine upload dist/**
+```
+
+### Documentation
+
+This project uses `sphinx` for generating the documentation.
+It also uses a lot of sphinx extensions to make the documentation more readable and interactive.
+For example the extension `myst-parser` is used to enable markdown support in the documentation (instead of the usual .rst-files).
+It also uses the `sphinx-autobuild` extension to automatically rebuild the documentation when changes are made.
+By running the following command, the documentation will be automatically built and served, when changes are made (make sure to run this command in the root directory of the project):
+
+```shell
+sphinx-autobuild ./docs/source/ ./docs/build/html/
+```
+
+This project features most of the extensions featured in this Tutorial: [Document Your Scientific Project With Markdown, Sphinx, and Read the Docs | PyData Global 2021](https://www.youtube.com/watch?v=qRSb299awB0).

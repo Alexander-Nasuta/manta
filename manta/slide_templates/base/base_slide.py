@@ -1,5 +1,4 @@
 import manim as m
-import manim_slides
 
 import os
 import inspect

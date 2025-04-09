@@ -1,7 +1,6 @@
 import manim as m
 
 from manim_editor import PresentationSectionType
-from numba.cuda import runtime
 
 from manta.slide_templates.base.base_slide import BaseSlide
 
@@ -23,6 +22,7 @@ class BaseIndexedSlide(BaseSlide):
             subcaption=None,
             subcaption_duration=None,
             subcaption_offset=0,
+            min_run_time=0,
             **kwargs,
     ):
         # not changing the parameterization of the play method
@@ -50,7 +50,7 @@ class BaseIndexedSlide(BaseSlide):
 
         super().play(
             animation_group,
-            m.FadeOut(hidden_circle, run_time=group_runtime+0.1),
+            m.FadeOut(hidden_circle, run_time=max(group_runtime+0.1, min_run_time)),
             **kwargs)
 
     def play_without_section(
