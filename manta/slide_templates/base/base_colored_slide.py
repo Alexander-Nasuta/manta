@@ -1,5 +1,5 @@
 import manim as m
-from manim_editor import PresentationSectionType
+from manta.manim_editor import PresentationSectionType
 
 from manta.color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
 from manta.padding_style.manta_padding import MantaPadding
