@@ -51,3 +51,8 @@ build-backend = "poetry.core.masonry.api"
 [pytest]
 addopts = "-ra -q no:warnings"
 testpaths = "tests"
+
+[tool.poetry.plugins]
+[tool.poetry.plugins."console_scripts"]
+"manedit" = "manta.manim_editor.__main__:main"
+"manim_editor" = "manta.manim_editor.__main__:main"

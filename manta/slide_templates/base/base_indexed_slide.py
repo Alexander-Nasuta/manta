@@ -1,6 +1,6 @@
 import manim as m
 
-from manim_editor import PresentationSectionType
+from manta.manim_editor import PresentationSectionType
 
 from manta.slide_templates.base.base_slide import BaseSlide
 
