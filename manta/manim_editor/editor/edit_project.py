@@ -4,8 +4,8 @@ from typing import List
 
 import jinja2
 
-from .config import get_config
-from .presentation_classes import Slide
+from manta.manim_editor.editor.config import get_config
+from manta.manim_editor.editor.presentation_classes import Slide
 
 __all__ = ["export_presentation"]
 

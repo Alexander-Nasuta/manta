@@ -43,6 +43,7 @@ jupyterlab = "^4.2.5"
 twine = "^5.1.1"
 sphinx-copybutton = "^0.5.2"
 gymnasium = "^0.28.1"
+pyrr = "^0.10"
 
 [build-system]
 requires = ["poetry-core"]

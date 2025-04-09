@@ -6,7 +6,7 @@ from typing import Any, Generator, List, Optional, Tuple
 
 import jsonschema
 
-from .config import get_config
+from  manta.manim_editor.editor.config import get_config
 
 __all__ = ["capture", "capture_ffmpeg", "run_ffmpeg", "walk", "valid_json_load"]
 

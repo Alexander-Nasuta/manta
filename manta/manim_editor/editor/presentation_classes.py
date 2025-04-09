@@ -5,7 +5,7 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List
 
-from .commands import run_ffmpeg
+from manta.manim_editor.editor.commands import run_ffmpeg
 
 __all__ = ["PresentationSectionType", "Slide", "Section", "Scene"]
 

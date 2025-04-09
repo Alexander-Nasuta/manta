@@ -4,9 +4,9 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from .commands import valid_json_load, walk
-from .config import get_config
-from .presentation_classes import Scene, Section
+from manta.manim_editor.editor.commands import valid_json_load, walk
+from manta.manim_editor.editor.config import get_config
+from manta.manim_editor.editor.presentation_classes import Scene, Section
 
 __all__ = ["get_scene", "get_scenes"]
 

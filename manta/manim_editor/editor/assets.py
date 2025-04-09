@@ -1,6 +1,6 @@
 import manim
 
-from .config import get_config
+from manta.manim_editor.editor.config import get_config
 
 __all__ = ["IconNormal", "IconSkip", "IconLoop", "IconCompleteLoop", "EditorLogo", "EditorBanner"]
 

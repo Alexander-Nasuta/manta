@@ -2,10 +2,10 @@
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-from .commands import walk
-from .config import get_config
-from .manim_loader import valid_json_load
-from .presentation_classes import Slide
+from manta.manim_editor.editor.commands import walk
+from manta.manim_editor.editor.config import get_config
+from manta.manim_editor.editor.manim_loader import valid_json_load
+from manta.manim_editor.editor.presentation_classes import Slide
 
 __all__ = ["get_project", "get_projects"]
 

@@ -1,6 +1,6 @@
 from flask import render_template
 
-from . import bp
+from manta.manim_editor.app.error import bp
 
 
 @bp.app_errorhandler(400)

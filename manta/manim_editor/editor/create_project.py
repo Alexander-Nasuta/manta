@@ -4,8 +4,8 @@ import os
 from pathlib import Path
 from typing import List, Tuple
 
-from .manim_loader import get_scenes
-from .presentation_classes import Scene, Section, Slide
+from manta.manim_editor.editor.manim_loader import get_scenes
+from manta.manim_editor.editor.presentation_classes import Scene, Section, Slide
 
 __all__ = ["create_project_dir", "populate_project_with_loaded_sections", "populate_project"]
 
