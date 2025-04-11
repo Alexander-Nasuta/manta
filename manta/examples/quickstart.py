@@ -1,11 +1,10 @@
 from manim_voiceover import VoiceoverScene
 from manim_voiceover.services.gtts import GTTSService
 
-from components.neural_networks_utils import NeuralNetworkUtils
-from components.qr_code_utils import QrCodeUtils
-from components.uml_utils import UmlUtils
+from manta.components.neural_networks_utils import NeuralNetworkUtils
+from manta.components.qr_code_utils import QrCodeUtils
+from manta.components.uml_utils import UmlUtils
 from manta.slide_templates.minimal.minimal_slide_template import MinimalSlideTemplate
-from manta.slide_templates.minimal.minimal_intro_slide import MinimalIntroSlide
 
 import manim as m
 import manta.docbuild.image_path_utils as path_utils
@@ -14,7 +13,7 @@ from manta.color_theme.catppucin.catppuccin_mocha import CatppuccinMochaTheme
 from manta.slide_templates.minimal.minimal_intro_slide import MinimalIntroSlide
 
 import manta.docbuild.image_path_utils as paths
-from slide_templates.classic.classic_slide_template import ClassicSlideTemplate
+from manta.slide_templates.classic.classic_slide_template import ClassicSlideTemplate
 
 
 class QuickstartIntroSlide(MinimalIntroSlide, VoiceoverScene):

@@ -42,25 +42,13 @@ First install manta via pip:
 ```shell
 pip install manta-manim-theme
 ```
-Then update manim to the latest version:
-```shell
-pip install manim-editor --no-deps
-```
-
-Note: Manim-Editor dependencies on Manim is outdated (As of 2025-04).
-
-I recommend using version 0.18.1 of Manim and the latest version of Manim-Editor.
-
-```shell
-pip install manim-editor --no-deps
-```
 
 Here is a minimal example of how to use Manta:
 ```python
 from manta.slide_templates.minimal.minimal_intro_slide import MinimalIntroSlide
 
 
-class MyIntroSlide(MinimalIntroSlide): # make sure to inherit from one of the slide templates
+class MyMinimalExampleSlide(MinimalIntroSlide): # make sure to inherit from one of the slide templates
     
     # have a look at the source code of MinimalIntroSlide for customization options (font size, colors, etc.)
     title = "Manta"
@@ -80,11 +68,10 @@ if __name__ == '__main__':
     # you can use the following method to render the video
     # there is a variety of methods to render the videos 
     # in my opinion this more convenient than using the command line
-    MyIntroSlide.render_video_medium() 
-
+    MyMinimalExampleSlide.show_last_frame()
 ```
 
-A brief presentation showcasing Mantas Key-Features is available in its documentation 
+A brief presentation showcasing Mantas Key-Features is available in its documentation in the **Usage** section.
 
 ## Documentation
 
@@ -108,15 +95,11 @@ If you have any questions or feedback, feel free to contact me via [email](mailt
 
 ## Development
 
-### Building and Publishing the Project to PyPi
 
 In order to publish the project to PyPi, the project needs to be built and then uploaded to PyPi.
 
 To build the project, run the following command:
-
-# build
 `poetry build`
-
 It is considered good practice use the tool `twine` for checking the build and uploading the project to PyPi.
 By default the build command creates a `dist` folder with the built project files.
 To check all the files in the `dist` folder, run the following command:

@@ -71,13 +71,14 @@ html_theme = 'furo'
 html_static_path = ['_static']
 html_css_files = [
     'manim.css',
-    'custom_font.css',
-    'manta.css',
+    #'custom_font.css',
+    # 'manta.css',
 ]
 
 html_title = f"Manta v{release}"
 html_logo = "_static/logo.png"
-html_theme_options = {
+# html_theme_options
+_ = {
     # "source_repository": "",
     # "source_branch": "main",
     # "source_directory": "docs/source/",

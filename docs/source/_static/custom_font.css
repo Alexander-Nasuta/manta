@@ -1,5 +1,7 @@
+
+/*
 @import url('https://iosevka-webfonts.github.io/iosevka-fixed/iosevka-fixed.css');
-@import url('https://cdn.jsdelivr.net/npm/iosevka@16.0.0/dist/iosevka.css'); /* Import the Iosevka font */
+@import url('https://cdn.jsdelivr.net/npm/iosevka@16.0.0/dist/iosevka.css');
 @import url('https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css');
 @font-face {
     font-family: 'IosevkaTermSlab Nerd Font';
@@ -9,7 +11,7 @@
 }
 
 
-/* docs/source/_static/custom_font.css */
+
 body {
     font-family: 'Iosevka', 'Iosevka Fixed Web','Iosevka Web', "IosevkaTerm Nerd Font", "IosevkaTermSlab Nerd Font", 'DejaVu Sans Mono' , monospace;
 }
@@ -22,3 +24,4 @@ h1, h2, h3, h4, h5, h6 {
 code, span, pre {
     font-family: "IosevkaTerm Nerd Font Mono", "IosevkaTermSlab Nerd Font Mono", 'Iosevka', 'Iosevka Fixed Web','Iosevka Web', "IosevkaTerm Nerd Font", "IosevkaTermSlab Nerd Font", 'DejaVu Sans Mono', monospace;
 }
+ */
