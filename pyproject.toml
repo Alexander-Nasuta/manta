@@ -3,7 +3,7 @@ name = "manta-manim-theme"
 packages = [
     { include = "manta" }
 ]
-version = "1.0.0"
+version = "1.0.1"
 description = ""
 authors = ["Alexander Nasuta <alexander.nasuta@ima.rwth-aachen.de>"]
 readme = "README.md"
