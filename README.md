@@ -6,9 +6,10 @@
 
 A Framework for building Presentation Slides and themed Videos with Manim. 
 
-- Github: [Manta](https://github.com/Alexander-Nasuta/manta)
-- Pypi: [Manta](https://pypi.org/project/manta-manim-theme/)
-- Documentation: [Manta Docs](https://alexander-nasuta.github.io/manta/)
+- Gitlab: [Manta on Gitlab](https://git-ce.rwth-aachen.de/alexander.nasuta/manta)
+- Github: [Manta on Github](https://github.com/Alexander-Nasuta/manta)
+- Pypi: [Manta on PiPy](https://pypi.org/project/manta-manim-theme/)
+- Documentation: [Manta on Read the Docs](https://alexander-nasuta.github.io/manta/)
 
 ## Description
 
