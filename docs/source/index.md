@@ -15,7 +15,6 @@
 usage
 slide-tempates/slide-templates
 components/components
-example-gallery
 themes
 
 ```
