@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15194857.svg)](https://doi.org/10.5281/zenodo.15194857)
 <p align="center">
   <img src="https://raw.githubusercontent.com/Alexander-Nasuta/manta/main/resources/logos/logo.png" alt="Alt text" style="max-height: 200px;">
 </p>
