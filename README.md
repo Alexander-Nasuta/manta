@@ -1,6 +1,11 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15194857.svg)](https://doi.org/10.5281/zenodo.15194857)
+![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=flat)
+[![PyPI version](https://img.shields.io/pypi/v/manta-manim-theme)](https://pypi.org/project/manta-manim-theme/)
+![License](https://img.shields.io/pypi/l/manta)
+[![Documentation Status](https://readthedocs.org/projects/manta/badge/?version=latest)](https://manta.readthedocs.io/en/latest/?badge=latest)
+
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Alexander-Nasuta/manta/main/resources/logos/logo.png" alt="Alt text" style="max-height: 200px;">
+  <img src="https://raw.githubusercontent.com/Alexander-Nasuta/manta/main/resources/logos/logo.png" alt="Alt text" style="max-height: 100px;">
 </p>
 
 # Manta
